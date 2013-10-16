@@ -1,0 +1,22 @@
+{
+  "name": "jefferson-notes",
+  "version": "0.0.1",
+  "authors": [
+    "Wayne Graham <wayne.graham@virginia.edu>"
+  ],
+  "description": "Notes on the State of Virginia application",
+  "license": "MIT",
+  "homepage": "http://scholarslab.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "*",
+    "modernizr": "~2.6.2"
+  }
+}
