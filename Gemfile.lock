@@ -10,6 +10,10 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-action_caching (1.0.0)
+      actionpack (>= 4.0.0.beta, < 5.0)
+    actionpack-page_caching (1.0.0)
+      actionpack (>= 4.0.0.beta, < 5.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -67,6 +71,7 @@ GEM
     guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
+    high_voltage (2.0.0)
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
@@ -175,6 +180,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
+  actionpack-page_caching
   awesome_print
   coffee-rails (~> 4.0.0)
   foreman
@@ -182,6 +189,7 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rspec
+  high_voltage (~> 2.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   pg

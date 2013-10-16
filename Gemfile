@@ -12,8 +12,12 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+
+# for static pages see https://github.com/thoughtbot/high_voltage
+gem 'high_voltage', '~> 2.0.0'
+# page caching
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
