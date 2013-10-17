@@ -85,6 +85,8 @@ GEM
     guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
+    heroku-deflater (0.5.1)
+      rack (>= 1.4.5)
     high_voltage (2.0.0)
     hike (1.2.3)
     http_parser.rb (0.5.3)
@@ -219,6 +221,7 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rspec
+  heroku-deflater
   high_voltage (~> 2.0.0)
   jbuilder (~> 1.2)
   jquery-rails
