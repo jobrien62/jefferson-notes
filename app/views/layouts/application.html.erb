@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <title>JeffersonNotes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><%= content_for?(:title) ? yield(:title) : "Notes on the State of Virginia"%></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Next Bus" %>">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render "layouts/navigation" %>
+<main role="main">
 <%= yield %>
+</main>
 
+<%= render "layouts/footer" %>
 </body>
 </html>
