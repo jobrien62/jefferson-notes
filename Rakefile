@@ -4,3 +4,10 @@
 require File.expand_path('../config/application', __FILE__)
 
 JeffersonNotes::Application.load_tasks
+
+# Use rspec
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
