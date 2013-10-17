@@ -1,0 +1,35 @@
+<h1>Listing witnesses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Title</th>
+      <th>Publisher</th>
+      <th>Location</th>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @witnesses.each do |witness| %>
+      <tr>
+        <td><%= witness.author %></td>
+        <td><%= witness.title %></td>
+        <td><%= witness.publisher %></td>
+        <td><%= witness.location %></td>
+        <td><%= witness.year %></td>
+        <td><%= link_to 'Show', witness %></td>
+        <td><%= link_to 'Edit', edit_witness_path(witness) %></td>
+        <td><%= link_to 'Destroy', witness, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Witness', new_witness_path %>

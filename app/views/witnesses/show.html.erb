@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @witness.author %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @witness.title %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @witness.publisher %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @witness.location %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @witness.year %>
+</p>
+
+<%= link_to 'Edit', edit_witness_path(@witness) %> |
+<%= link_to 'Back', witnesses_path %>
