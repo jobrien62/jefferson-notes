@@ -25,8 +25,6 @@ gem 'jbuilder', '~> 1.2'
 ## Custom requirements for application
 
 gem "thin"
-# for static pages see https://github.com/thoughtbot/high_voltage
-gem 'high_voltage', '~> 2.0.0'
 # page caching
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'

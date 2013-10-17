@@ -1,11 +1,18 @@
 JeffersonNotes::Application.routes.draw do
-  resources :witnesses
+  get "static_pages/about"
+  get "static_pages/credits"
+  get "static_pages/navigation"
+  get "static_pages/reading"
+  #
+  resources :witnesses do
+    resources :pages
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => 'high_voltage/pages#show', id: 'index'
+  root :to => 'static_pages#home'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
