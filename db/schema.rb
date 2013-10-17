@@ -37,6 +37,6 @@ ActiveRecord::Schema.define(version: 20131017160255) do
     t.string   "slug"
   end
 
-  add_index "witnesses", ["slug"], name: "index_witnesses_on_slug"
+  add_index "witnesses", ["slug"], name: "index_witnesses_on_slug", unique: true
 
 end
