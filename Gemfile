@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 1.2'
 
 ## Custom requirements for application
 
+gem "thin"
 # for static pages see https://github.com/thoughtbot/high_voltage
 gem 'high_voltage', '~> 2.0.0'
 # page caching
@@ -51,7 +52,6 @@ end
 group :development do
   gem 'awesome_print'
   gem "foreman"
-  gem "thin"
   gem "rack-livereload"
   gem "guard"
   gem "guard-bundler"
