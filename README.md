@@ -1,4 +1,6 @@
 # Notes on the State of Virginia
+[![Build Status](https://travis-ci.org/waynegraham/jefferson-notes.png?branch=master)](https://travis-ci.org/waynegraham/jefferson-notes)
+
 
 ## Dependencies
 
