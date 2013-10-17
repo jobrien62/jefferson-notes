@@ -12,13 +12,15 @@ witnesses = Witness.create([
     title: "Notes On the State of Virginia",
     publisher: "Printed for John Stockdale, opposite Burlington-house, Piccadilly",
     location: "London",
-    year: 1787
+    year: 1787,
+    slug: 'stockdale'
   },
   {
     author: "Jefferson, Thomas, et al.",
     title: "Notes On the State of Virginia",
     publisher: "",
     location: "Paris",
-    year: 1785
+    year: 1785,
+    slug: 'paris'
   }
 ])

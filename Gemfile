@@ -33,6 +33,9 @@ gem 'actionpack-page_caching'
 # This is really just for the inital parsing of the data in to the data structure
 gem "nokogiri", "~> 1.6.0"
 
+# for generating nice URLs
+gem "friendly_id", "~> 5.0.0"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
