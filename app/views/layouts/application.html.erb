@@ -4,14 +4,20 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title><%= content_for?(:title) ? yield(:title) : "Notes on the State of Virginia"%></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Next Bus" %>">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link rel="apple-touch-icon-precomposed" href="<%= image_path('apple-touch-icon-precompsed.png')%>">
   <%= csrf_meta_tags %>
 </head>
 <body>
+<!--[if lt IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 <%= render "layouts/navigation" %>
 <main role="main">
 <%= yield %>
