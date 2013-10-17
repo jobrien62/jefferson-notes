@@ -12,13 +12,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-
-# for static pages see https://github.com/thoughtbot/high_voltage
-gem 'high_voltage', '~> 2.0.0'
-# page caching
-gem 'actionpack-action_caching'
-gem 'actionpack-page_caching'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -27,6 +20,19 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+## Custom requirements for application
+
+# for static pages see https://github.com/thoughtbot/high_voltage
+gem 'high_voltage', '~> 2.0.0'
+# page caching
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
+
+# Processing the html text
+# This is really just for the inital parsing of the data in to the data structure
+gem "nokogiri", "~> 1.6.0"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
