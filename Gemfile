@@ -38,6 +38,9 @@ gem "nokogiri", "~> 1.6.0"
 # for generating nice URLs
 gem "friendly_id", "~> 5.0.0"
 
+gem 'awesome_print'
+
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -51,7 +54,6 @@ group :production do
 end
 
 group :development do
-  gem 'awesome_print'
   gem "foreman"
   gem "rack-livereload"
   gem "guard"
