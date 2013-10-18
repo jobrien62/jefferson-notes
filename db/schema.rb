@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017190009) do
+ActiveRecord::Schema.define(version: 20131018174433) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20131017190009) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "witness_id"
+    t.string   "slug"
   end
 
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true
   add_index "pages", ["witness_id"], name: "index_pages_on_witness_id"
 
   create_table "witnesses", force: true do |t|
