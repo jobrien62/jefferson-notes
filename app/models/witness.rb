@@ -3,4 +3,6 @@ class Witness < ActiveRecord::Base
   friendly_id :publisher, use: :slugged
 
   has_many :pages
+
+  accepts_nested_attributes_for :pages
 end

@@ -70,6 +70,6 @@ class WitnessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def witness_params
-      params.require(:witness).permit(:author, :title, :publisher, :location, :year)
+      params.require(:witness).permit(:author, :title, :publisher, :location, :year, :slug)
     end
 end

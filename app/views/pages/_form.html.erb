@@ -1,4 +1,7 @@
-<%= form_for @page, :url => witness_pages_path(@page) do |f| %>
+<%#= form_for @page, :url => witness_path(@page) do |f| %>
+  <%= form_for @witness do |form| %>
+
+    <%= form.fields_for :page, page do |f| %>
  
   <% if @page.errors.any? %>
     <div id="error_explanation">
@@ -28,3 +31,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+  <% end %>
