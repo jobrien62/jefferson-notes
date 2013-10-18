@@ -1,29 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @witness.author %>
-</p>
+<div class="citation">
+  <p>
+  <%= @witness.author %>. <i><%= @witness.title %></i>. <%= @witness.location %>: <%= @witness.location %>,   <%= @witness.year %>.
+  </p>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @witness.title %>
-</p>
+<div class="pages">
+  <% @witness.pages.each do |page| %>
 
-<p>
-  <strong>Publisher:</strong>
-  <%= @witness.publisher %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @witness.location %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @witness.year %>
-</p>
-
-<%= link_to 'Edit', edit_witness_path(@witness) %> |
-<%= link_to 'Back', witnesses_path %>
+  <% end %>
+</div>

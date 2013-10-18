@@ -1,4 +1,5 @@
-  <%form_for @page, :url => witness_pages_path(@page) do |f| %>
+<%= form_for @page, :url => witness_pages_path(@page) do |f| %>
+ 
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>

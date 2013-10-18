@@ -37,7 +37,7 @@ gem "nokogiri", "~> 1.6.0"
 gem "friendly_id", "~> 5.0.0"
 
 gem 'awesome_print'
-
+gem 'faker'
 
 
 group :doc do
