@@ -5,6 +5,11 @@
   <%= @page.content.html_safe %>
 </div>
 
+<div id="witnesses">
+ <%= image_tag('http://baconmockup.com/200/300') %>
+ <%= image_tag('http://baconmockup.com/200/300') %>  
+</div>
+
 <%= link_to "Previous", [@page.prev.witness, @page.prev] unless @page.prev.nil? %>
 <%= link_to "Next", [@page.next.witness, @page.next] unless @page.next.nil? %>
 
