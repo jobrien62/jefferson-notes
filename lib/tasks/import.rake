@@ -17,16 +17,20 @@ end
 
 namespace :import do
   desc "Map the HTML file to the schema"
-  task :doc => :environment do
+  task :docs => :environment do
     source = File.open("./lib/assets/stockdale_processed.html")
     doc = Nokogiri::HTML(source)
 
+    order = 0
+
     ap "Adding pages..."
     doc.css('div[@class="page"]').each do |page|
+      order += 1
       Page.create(
         content: page.to_html,
         page_number: page.attribute('id').value.to_i,
-        witness_id: 1
+        witness_id: 1,
+        order: order
       )
     end
 
