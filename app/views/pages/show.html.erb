@@ -5,6 +5,6 @@
   <%= @page.content.html_safe %>
 </div>
 
-<%= link_to "Previous", [@page.prev.witness, @page.prev] %>
-<%= link_to "Next", [@page.next.witness, @page.next] %>
+<%= link_to "Previous", [@page.prev.witness, @page.prev] unless @page.prev.nil? %>
+<%= link_to "Next", [@page.next.witness, @page.next] unless @page.next.nil? %>
 

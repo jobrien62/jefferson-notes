@@ -27,7 +27,7 @@ namespace :import do
     doc.css('div[@class="page"]').each do |page|
       order += 1
       Page.create(
-        content: page.to_html,
+        content: page.to_html(encoding:'US-ASCII'),
         page_number: page.attribute('id').value.to_i,
         witness_id: 1,
         order: order
