@@ -9,7 +9,7 @@
 <div class="pages">
   <% @witness.pages.each do |page| %>
     <div class="image-block">
-    <img src="http://www.lorempixum.com/g/400/100/sports" alt="" />
+      <%= link_to image_tag('http://baconmockup.com/200/300'), witness_page_path(@witness, page) %>
     </div>
   <% end %>
 </div>

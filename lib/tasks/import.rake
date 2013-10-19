@@ -1,20 +1,6 @@
 require 'nokogiri'
 require "awesome_print"
 
-class Stockdale < Nokogiri::XML::SAX::Document
-  def start_element name, attrs = []
-    ap "starting: #{name}"
-  end
-
-  def characters string
-    
-  end
-
-  def end_element name
-    ap "edning #{name}"
-  end
-end
-
 namespace :import do
   desc "Map the HTML file to the schema"
   task :docs => :environment do
@@ -26,11 +12,16 @@ namespace :import do
     ap "Adding pages..."
     doc.css('div[@class="page"]').each do |page|
       order += 1
+      page_no = page.attribute('id').value.to_i
+      notes = page.attribute('id').to_str
+
       Page.create(
         content: page.to_html(encoding:'US-ASCII'),
-        page_number: page.attribute('id').value.to_i,
+        page_number: page_no,
         witness_id: 1,
-        order: order
+        #slug: page.attribute('id').to_str,
+        order: order,
+        notes: notes
       )
     end
 
