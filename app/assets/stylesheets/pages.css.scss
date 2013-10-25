@@ -5,3 +5,52 @@
 .addEditorial {
   display: none;
 }
+
+@mixin column_count($columns) {
+  -moz-column-count: $columns;
+  -webkit-column-count: $columns;
+  column-count: $columns;
+}
+
+@mixin columns($columns, $columngap, $lineheight) {
+  line-height: $lineheight;
+  -webkit-column-count: $columns;
+  -webkit-column-gap: $columngap;
+  -moz-column-count: $columns;
+  -moz-column-gap: $columngap;
+  column-count: $columns;
+  column-gap: $columngap;
+}
+
+.pages {
+  @include columns(5, 0, 0);
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media(max-width: 1200px) {
+  .pages {
+    @include column_count(4);
+  }
+}
+
+@media(max-width: 1000px) {
+  .pages {
+    @include column_count(3);
+  }
+}
+
+@media(max-width: 800px) {
+  .pages {
+    @include column_count(2);
+  }
+}
+
+@media(max-width: 400px) {
+  .pages {
+    @include column_count(1);
+  }
+}
