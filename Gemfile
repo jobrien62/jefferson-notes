@@ -67,6 +67,7 @@ group :development, :test do
   gem "capybara", "~> 2.1.0"
   gem "database_cleaner", "~> 1.2.0"
   gem "faker", "~> 1.2.0"
+  gem 'coveralls', require: false
 end
 
 group :test do
