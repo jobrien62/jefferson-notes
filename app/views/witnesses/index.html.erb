@@ -1,35 +1,11 @@
-<h1>Listing witnesses</h1>
+<h1>Witnesses</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th>Title</th>
-      <th>Publisher</th>
-      <th>Location</th>
-      <th>Year</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<p>Find me in app/views/witnesses/index.html.erb</p>
 
-  <tbody>
-    <% @witnesses.each do |witness| %>
-      <tr>
-        <td><%= witness.author %></td>
-        <td><%= witness.title %></td>
-        <td><%= witness.publisher %></td>
-        <td><%= witness.location %></td>
-        <td><%= witness.year %></td>
-        <td><%= link_to 'Show', witness %></td>
-        <td><%= link_to 'Edit', edit_witness_path(witness) %></td>
-        <td><%= link_to 'Destroy', witness, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p>This page hides the fact that there are multiple witnesses as there is only one transcription.</p>
 
-<br>
+<div class="citation">
+    <p><%= link_to @witness.citation.html_safe, @witness %></p>
+</div>
 
-<%= link_to 'New Witness', new_witness_path %>
+

@@ -5,4 +5,8 @@ class Witness < ActiveRecord::Base
   has_many :pages
 
   accepts_nested_attributes_for :pages
+
+  def citation
+    "#{author}, <i>#{title}</i>. #{location}: #{year}."
+  end
 end

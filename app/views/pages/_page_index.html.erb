@@ -1,0 +1,5 @@
+<% @pages.each do |page| %>
+  <div class="image-block">
+      <%= link_to image_tag('http://baconmockup.com/150/200'), witness_page_path(@witness, page) %>
+  </div>
+<% end %>

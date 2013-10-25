@@ -4,7 +4,8 @@ class WitnessesController < ApplicationController
   # GET /witnesses
   # GET /witnesses.json
   def index
-    @witnesses = Witness.all
+    #@witnesses = Witness.all
+    @witness = Witness.first
   end
 
   # GET /witnesses/1

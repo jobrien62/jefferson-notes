@@ -2,7 +2,7 @@
 
 <div class="citation">
   <p>
-  <%= @witness.author %>. <i><%= @witness.title %></i>. <%= @witness.location %>: <%= @witness.location %>,   <%= @witness.year %>.
+    <%= @witness.citation.html_safe %>
   </p>
 </div>
 

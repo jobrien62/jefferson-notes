@@ -1,29 +1,5 @@
 <h1>Listing pages</h1>
-<pre>
-Page:
-</pre>
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Page number</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @pages.each do |page| %>
-      <tr>
-        <td><%= page.content %></td>
-        <td><%= page.page_number %></td>
-        <td><%= page.notes %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "page_index" %>
 
-<br>
 
