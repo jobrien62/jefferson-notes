@@ -39,10 +39,10 @@ describe WitnessesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all witnesses as @witnesses" do
+   it "assigns the requested witness as @witness" do
       witness = Witness.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:witnesses).should eq([witness])
+      get :show, {:id => witness.to_param}, valid_session
+      assigns(:witness).should eq(witness)
     end
   end
 

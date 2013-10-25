@@ -37,7 +37,6 @@ gem "nokogiri", "~> 1.6.0"
 gem "friendly_id", "~> 5.0.0"
 
 gem 'awesome_print'
-gem 'faker'
 
 
 group :doc do
@@ -67,9 +66,10 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.2.1"
   gem "capybara", "~> 2.1.0"
   gem "database_cleaner", "~> 1.2.0"
+  gem "faker", "~> 1.2.0"
 end
 
 group :test do
-  
+  gem 'simplecov', :require => false
 end
 

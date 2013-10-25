@@ -1,6 +1,6 @@
 # Notes on the State of Virginia
 [![Build Status](https://travis-ci.org/waynegraham/jefferson-notes.png?branch=master)](https://travis-ci.org/waynegraham/jefferson-notes)
-
+[![Code Climate](https://codeclimate.com/github/waynegraham/jefferson-notes.png)](https://codeclimate.com/github/waynegraham/jefferson-notes)
 
 ## Dependencies
 
