@@ -8,10 +8,10 @@
 <div id="witnesses">
   <% stockton_pid = 763477 + @page.id %>
   <% paris_pid = 1195296 + @page.id %>
-  <% stockton_thumb = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
-  <% stockton_image = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
-  <% paris_thumb = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
-  <% paris_image = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
+  <% stockton_thumb = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
+  <% stockton_image = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
+  <% paris_thumb = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
+  <% paris_image = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
 
   <%= link_to image_tag(stockton_thumb), stockton_image %>
   <%= link_to image_tag(paris_thumb), paris_image %>
