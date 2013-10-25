@@ -2,8 +2,6 @@
 
 FactoryGirl.define do
 
-  sequence(:slug) { |n| "slug-#{n}" }
-
   factory :page do
     content Faker::Lorem.paragraphs.to_s
     page_number 1
