@@ -10,6 +10,11 @@ body {
   font-family: 'Libre Baskerville', serif;
 }
 
+#map {
+  height: 916px;
+  width: 1024px;
+}
+
 @mixin column_count($columns) {
   -moz-column-count: $columns;
   -webkit-column-count: $columns;

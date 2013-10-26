@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require underscore/underscore
 //= require modernizr/modernizr
+//= require leaflet/dist/leaflet
 //= require_tree .

@@ -9,13 +9,34 @@
   <% stockton_pid = 763477 + @page.id %>
   <% paris_pid = 1195296 + @page.id %>
   <% stockton_thumb = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
-  <% stockton_image = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
+  <% stockton_image = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{stockton_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1600&maxHeight=1600" %>
   <% paris_thumb = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=150&maxHeight=200" %>
-  <% paris_image = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1200&maxHeight=1200" %>
+  <% paris_image = "http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{paris_pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=1600&maxHeight=1600" %>
 
   <%= link_to image_tag(stockton_thumb), stockton_image %>
   <%= link_to image_tag(paris_thumb), paris_image %>
+
+  <div id="map"></div>
 </div>
+
+<script>
+var map = L.map('map', {
+    maxZoom: 17,
+    minZoom: 1,
+    crs: L.CRS.Simple
+  }).setView([0,0], 1);
+
+
+  map.setMaxBounds(new L.LatLngBounds([0,1200], [768,0]));
+
+  // var imageUrl = 'https://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:763496/methods/djatoka:StaticSDef/getScaled?maxWidth=1600&maxHeight=1600';
+  var imageUrl = '<%= stockton_image.html_safe %>';
+  var imageBounds = [[384, 0], [0, 384]];
+
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+</script>
 
 <%= link_to "Previous", [@page.prev.witness, @page.prev] unless @page.prev.nil? %>
 <%= link_to "Next", [@page.next.witness, @page.next] unless @page.next.nil? %>
