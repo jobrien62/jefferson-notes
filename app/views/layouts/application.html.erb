@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title><%= content_for?(:title) ? yield(:title) : "Notes on the State of Virginia"%></title>
-  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Next Bus" %>">
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Notes on the State of Virginia" %>">
+  <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link rel="apple-touch-icon-precomposed" href="<%= image_path('apple-touch-icon-precompsed.png')%>">
@@ -22,7 +23,6 @@
 <main role="main">
 <%= yield %>
 </main>
-
 <%= render "layouts/footer" %>
 </body>
 </html>

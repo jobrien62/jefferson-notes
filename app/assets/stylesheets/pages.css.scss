@@ -6,6 +6,10 @@
   display: none;
 }
 
+body {
+  font-family: 'Libre Baskerville', serif;
+}
+
 @mixin column_count($columns) {
   -moz-column-count: $columns;
   -webkit-column-count: $columns;
