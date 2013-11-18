@@ -18,7 +18,7 @@ $ npm install -g bower
 
 ```shell
 $ bundle install
-$ bower install
 $ rake db:migrate
+$ rake db:seed (first time only)
 $ foreman start
 ```
