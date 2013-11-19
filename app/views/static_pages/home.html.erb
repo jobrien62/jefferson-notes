@@ -7,13 +7,20 @@
   </p>
 </div>
 
- <div class="pages">
-   <% @witness.pages.each do |page| %>
-     <div class="image-block">
-       <% pid = 763477 + page.id %>
-       <% image_reflector = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=400&maxHeight=600" %>
-      <%= link_to image_tag(image_reflector), witness_page_path(@witness, page) %>
-    </div>
+<div class="pages">
+  <% @images.each do |image| %>
+    <%= link_to image_tag(fedora_url(image.pid)), fedora_url(image.pid, 1200, 1200) %><br/>
   <% end %>
+</div>
+
+
+ <div class="pages">
+   <%# @witness.pages.each do |page| %>
+     <div class="image-block">
+       <%# pid = 763477 + page.id %>
+       <%# image_reflector = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=400&maxHeight=600" %>
+      <%#= link_to image_tag(image_reflector), witness_page_path(@witness, page) %>
+    </div>
+  <% #end %>
 </div>
 
