@@ -20,5 +20,7 @@ $ npm install -g bower
 $ bundle install
 $ bower install
 $ rake db:migrate
+$ rake import:docs
+$ rake import:images
 $ foreman start
 ```
