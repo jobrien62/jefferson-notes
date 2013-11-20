@@ -3,6 +3,10 @@ require "awesome_print"
 require "csv"
 
 namespace :import do
+
+  desc "Convenience wrapper for all the tasks"
+  task :all => [:docs, :images, :page_images]
+
   desc "Map the HTML file to the schema"
   task :docs => :environment do
     source = File.open("./lib/assets/stockdale_processed.html")

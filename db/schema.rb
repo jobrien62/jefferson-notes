@@ -36,11 +36,6 @@ ActiveRecord::Schema.define(version: 20131119203108) do
 
   add_index "images", ["witness_id"], name: "index_images_on_witness_id"
 
-  create_table "page_images", force: true do |t|
-    t.integer "page_id"
-    t.integer "image_id"
-  end
-
   create_table "pages", force: true do |t|
     t.text     "content"
     t.integer  "page_number"
@@ -54,6 +49,11 @@ ActiveRecord::Schema.define(version: 20131119203108) do
 
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true
   add_index "pages", ["witness_id"], name: "index_pages_on_witness_id"
+
+  create_table "pages_images", force: true do |t|
+    t.integer "page_id"
+    t.integer "image_id"
+  end
 
   create_table "witnesses", force: true do |t|
     t.string   "author"
