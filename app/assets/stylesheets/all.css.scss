@@ -1,0 +1,18 @@
+@import "compass";
+@import "susy";
+@import "compass/reset";
+@import "settings";
+
+@include establish-baseline;
+
+body {
+    @include container(show);
+    font-family: 'Libre Baskerville', serif;
+}
+
+
+.addEditorial {
+    display: none;
+}
+
+
