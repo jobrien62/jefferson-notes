@@ -32,6 +32,45 @@ namespace :import do
     "#{prefix}#{file}".gsub('.tif', '.jpg')
   end
 
+  desc "Contruct Page Associations"
+  task :page_images => :environment do
+    source = File.open("./lib/assets/pages-correlate.csv")
+
+    ap "Associating Pages and pids"
+
+    CSV.foreach(source, :headers => true) do |row|
+      slug = row[6]
+      #ap slug unless slug.nil?
+
+      stockdale_pid = "uva-lib:#{row[1]}"
+      paris_pid = "uva-lib:#{row[5]}"
+
+      page = Page.find_by_slug(slug)
+
+      unless page.nil?
+        stockdale_image = Image.find_by_pid(stockdale_pid)
+        paris_image = Image.find_by_pid(paris_pid)
+        ap paris_image
+
+        pageImages = PageImage.create([
+          {
+            page_id: page.id,
+            image_id: stockdale_image.id
+          },
+          {
+            page_id: page.id,
+            image_id: paris_image.id
+          }
+
+        ])
+      end
+
+      #ap stockdale_pid
+
+    end
+
+  end
+
   desc "Import page image references"
   task :images => :environment do
     source = File.open("./lib/assets/pages-correlate.csv")
