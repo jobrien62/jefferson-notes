@@ -7,6 +7,10 @@ namespace :import do
   desc "Convenience wrapper for all the tasks"
   task :all => [:docs, :images, :page_images]
 
+  desc "Convenience wrapper for resetting the database"
+  task :reset => ['db:reset', :all]
+
+
   desc "Map the HTML file to the schema"
   task :docs => :environment do
     source = File.open("./lib/assets/stockdale_processed.html")
@@ -57,7 +61,7 @@ namespace :import do
 
         ap "Associating #{page.slug} with #{stockdale_image.pid} and #{paris_image.pid}"
 
-        pageImage = PageImage.create([
+        pageImage = ImagesPages.create([
           {
             page_id: page.id,
             image_id: stockdale_image.id
