@@ -9,8 +9,13 @@
 <div class="pages">
   <% @witness.pages.each do |page| %>
     <div class="image-block">
-      <%= link_to image_tag('http://baconmockup.com/200/300'), witness_page_path(@witness, page) %>
+      <% image = page.images.first %>
+      <% unless image.nil? %>
+        <%= link_to image_tag(fedora_url(image.pid, 200, 300)), witness_page_path(@witness, page) %>
+      <% end %>
     </div>
   <% end %>
 </div>
+
+
 
