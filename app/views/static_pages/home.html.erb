@@ -10,7 +10,7 @@
     <% image = page.images.first %>
     <% unless image.nil? %>
       <div class="image-blog">
-        <%= link_to image_tag(fedora_url(image.pid)), witness_page_path(@witness, page) %>
+        <%= link_to image_tag(fedora_thumb(image.pid)), witness_page_path(@witness, page) %>
       </div>
     <% end %>
   <% end %>
