@@ -1,26 +1,2 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
-
-<div class="citation">
-  <p>
-    <%= @witness.citation.html_safe %>
-  </p>
-</div>
-
-<div class="pages">
-  <% @images.each do |image| %>
-    <%= link_to image_tag(fedora_url(image.pid)), fedora_url(image.pid, 1200, 1200) %><br/>
-  <% end %>
-</div>
-
-
- <div class="pages">
-   <%# @witness.pages.each do |page| %>
-     <div class="image-block">
-       <%# pid = 763477 + page.id %>
-       <%# image_reflector = "//fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:#{pid}/methods/djatoka:StaticSDef/getScaled?maxWidth=400&maxHeight=600" %>
-      <%#= link_to image_tag(image_reflector), witness_page_path(@witness, page) %>
-    </div>
-  <% #end %>
-</div>
-
+<h1>Notes on the State of Virginia</h1>
+<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.</p>
