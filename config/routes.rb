@@ -3,6 +3,8 @@ JeffersonNotes::Application.routes.draw do
   get "static_pages/credits"
   get "static_pages/navigation"
   get "static_pages/reading"
+
+  resources :pages
   #
   resources :witnesses do
     resources :pages
