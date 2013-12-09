@@ -166,8 +166,14 @@
         color: rgba(white, 0.9);
         @extend %clearfix;
 
+        .home & {
+            background:transparent;
+            border:none;
+        }
+
         a {
-            color: rgba(white, 0.9);
+            color: #f0f0f0;
+            color: rgba(white, 0.8);
             text-decoration:none;
         }
 
@@ -182,11 +188,20 @@
         h1 {
             float:left;
             margin-left: 1em;
+
+            .home & {
+                @include adjust-font-size-to(60px);
+                @include adjust-leading-to(2,60px);
+                @include leader(4, 60px);
+            }
         }
 
         nav {
             float:right;
 
+            .home & {
+                display:none;
+            }
             li {
                 display:inline-block;
                 border-left:1px solid rgba(white, 0.1);
@@ -209,6 +224,11 @@
 
         .pages & {
             width:auto;
+        }
+
+        .home & {
+            background: transparent;
+            color: #fff;
         }
 
         background: #fff;
@@ -254,6 +274,59 @@
         @include adjust-leading-to(1,14px);
         color: #999;
         font-style:italic;
+    }
+
+    .read-notes {
+        display:block;
+        text-decoration:none;
+        padding:rhythm(1);
+        text-align:center;
+        @include adjust-font-size-to(24px);
+        @include adjust-leading-to(1,24px);
+        @include leader(3,24px);
+
+        &:link,
+        &:visited {
+            color: #f0f0f0;
+            color: rgba(white, 0.9);
+            background: #555;
+            background:rgba(black,0.35);
+        }
+
+        &:hover,
+        &:focus {
+            background: #444;
+            background:rgba(black,0.5);
+            outline: 1px dotted rgba(white, 0.1);
+        }
+
+        &:active {
+            background: #333;
+            background:rgba(black,0.65);
+        }
+    }
+
+    .home main nav ul {
+        list-style:none;
+        margin-left:0;
+        padding-left:0;
+        @include adjust-font-size-to(12px);
+        @include adjust-leading-to(1,12px);
+        text-align:center;
+
+        li {
+            display:inline-block;
+            & + li:before {
+                content:" · ";
+                color: rgba(white, 0.25);
+                margin: 0 0.5em;
+            }
+        }
+
+        a {
+            color: #fff;
+            text-decoration:none;
+        }
     }
 }
 
