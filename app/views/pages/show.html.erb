@@ -3,9 +3,12 @@
   <%= @page.content.html_safe %>
 </div>
 
-<div id="witnesses">
-  <% @page.images.each do |image| %>
+<div class="thumbnails">
+    <% @page.images.each do |image| %>
+    <div class="thumbnail">
     <%= link_to(image_tag(fedora_url(image.pid, 150, 200)), fedora_url(image.pid, 1200, 1200)) %>
+    <p><%= image.witness.location %>, <%= image.witness.year %></p>
+    </div>
 <% end %>
 </div>
 
