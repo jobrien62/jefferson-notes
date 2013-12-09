@@ -236,6 +236,8 @@
         margin: rhythm(1) gutter(16);
 
         @media (min-width:700px) {
+
+        .pages & {
             .transcription {
                 @include span(7 of 14);
                 @include trailer(1);
@@ -243,7 +245,10 @@
             .thumbnails {
                 @include span(last 6 of 14);
             }
+
+            }
         }
+
         .thumbnail {
             @media (min-width: 480px) {
                 @include gallery(3 of 6 isolate);
