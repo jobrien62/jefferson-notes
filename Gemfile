@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem "compass-rails", "~> 2.0.alpha.0"
+gem "compass-rails", "~> 1.1.2"
 gem "susy", "~> 2.0.0.alpha.4"
 
 # Use Uglifier as compressor for JavaScript assets
