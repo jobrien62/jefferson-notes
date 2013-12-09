@@ -206,9 +206,54 @@
 
     main {
         @include span(8);
+
+        .pages & {
+            width:auto;
+        }
+
         background: #fff;
         padding: span(1);
         margin: rhythm(1) gutter(16);
+
+        @media (min-width:700px) {
+            .transcription {
+                @include span(7 of 14);
+                @include trailer(1);
+            }
+            .thumbnails {
+                @include span(last 6 of 14);
+            }
+        }
+        .thumbnail {
+            @media (min-width: 480px) {
+                @include gallery(3 of 6 isolate);
+            }
+            p {
+                margin:0;
+                @include adjust-font-size-to(14px);
+                @include adjust-leading-to(1, 14px);
+                color: #999;
+            }
+
+        }
+        .pagination {
+            clear:both;
+            border-top:1px solid #eee;
+            @include adjust-leading-to(2);
+            @include margin-leader(1);
+
+            .next {
+                float:right;
+                text-align:right;
+            }
+        }
+    }
+
+    .page_number {
+        @include adjust-font-size-to(14px);
+        @include adjust-leading-to(1,14px);
+        color: #999;
+        font-style:italic;
     }
 }
 
