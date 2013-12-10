@@ -13,6 +13,6 @@
 </div>
 
 <div class="pagination">
-  <%= link_to "Previous", [@page.prev.witness, @page.prev], class: "previous" unless @page.prev.nil? %>
-  <%= link_to "Next", [@page.next.witness, @page.next], class: "next" unless @page.next.nil? %>
+  <%= link_to "Previous", [@page.prev], class: "previous" unless @page.prev.nil? %>
+  <%= link_to "Next", [@page.next], class: "next" unless @page.next.nil? %>
 </div>

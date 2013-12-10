@@ -12,7 +12,7 @@
       <% image = page.images.first %>
       <% unless image.nil? %>
           <div class="thumbnail">
-          <%= link_to image_tag(fedora_squarethumb(image.pid)), witness_page_path(@witness, page) %>
+          <%= link_to image_tag(fedora_squarethumb(image.pid)), page_path(page) %>
           <p><%= page %></p>
       </div>
       <% end %>
