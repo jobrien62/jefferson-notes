@@ -10,6 +10,31 @@ namespace :import do
   desc "Convenience wrapper for resetting the database"
   task :reset => ['db:reset', :all]
 
+  desc "Prepare queries for database"
+  task :queries => :environment do
+    source = File.open('./lib/assets/queries.html')
+    doc = Nokogiri::HTML(source)
+
+    order = 0
+
+    doc.css('div[@class="query"]').each do |query|
+      order += 1
+
+      slug = query.attribute('id').value
+      title = slug.split('-').join(' ').titleize
+      content = query.to_html(encoding: 'US-ASCII')
+
+      Milestone.create(
+        order: order,
+        content: content,
+        title: title,
+        slug: slug
+      )
+
+      ap "Created #{title}"
+    end
+
+  end
 
   desc "Map the HTML file to the schema"
   task :docs => :environment do

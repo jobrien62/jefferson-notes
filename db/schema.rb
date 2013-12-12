@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121193559) do
+ActiveRecord::Schema.define(version: 20131212155221) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20131121193559) do
 
   add_index "images_pages", ["image_id"], name: "index_images_pages_on_image_id"
   add_index "images_pages", ["page_id"], name: "index_images_pages_on_page_id"
+
+  create_table "milestones", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "page_images", force: true do |t|
     t.integer "page_id"
