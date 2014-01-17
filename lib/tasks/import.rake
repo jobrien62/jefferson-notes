@@ -1,6 +1,7 @@
 require 'nokogiri'
 require "awesome_print"
 require "csv"
+require "rsolr"
 
 namespace :import do
 
@@ -13,6 +14,23 @@ namespace :import do
   def mapPageToPids(page)
     
     pids = {}
+  end
+
+  desc "Generate the Solr index"
+  task :index => :environment do
+    source = File.open('./lib/assets/queries.html')
+    doc = Nokogiri::HTML(source)
+
+    documents = []
+
+    doc.css('div[@class="query"]').each do |query|
+      query.css('p').each do |content|
+        id = content.attribute('id').value
+        text = content
+        ap id
+      end
+
+    end
   end
 
   desc "Report number of paragraphs"
