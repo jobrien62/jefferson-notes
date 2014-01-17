@@ -27,7 +27,7 @@ namespace :import do
       query.css('p').each do |content|
         id = content.attribute('id').value
         text = content
-        ap id
+        ap content
       end
 
     end
