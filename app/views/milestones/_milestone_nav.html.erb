@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <% @milestones.each do |milestone| %>
+      <li><%= link_to(milestone.title, milestone) %></li>
+  <% end %>
+  </ul>
+</nav>
