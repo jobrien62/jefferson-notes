@@ -21,16 +21,29 @@ namespace :import do
     source = File.open('./lib/assets/queries.html')
     doc = Nokogiri::HTML(source)
 
-    documents = []
+    solr = RSolr.connect :url => "http://localhost:8080/solr/"
+
+    documents = Array.new
 
     doc.css('div[@class="query"]').each do |query|
       query.css('p').each do |content|
-        id = content.attribute('id').value
-        text = content
-        ap content
-      end
+        ap "Adding #{content.attribute('id').value} to the index"
 
+        ap content.text
+        id = content.attribute('id').value
+        documents.push(:id => id, :text => content.text)
+      end
     end
+
+    ap "Sending content to the Solr server..."
+
+    solr.add documents
+
+    ap "Cleaning up and omitimizing..."
+    solr.update :data => '<commit/>'
+    solr.update :data => '<optimize/>'
+
+
   end
 
   desc "Report number of paragraphs"
