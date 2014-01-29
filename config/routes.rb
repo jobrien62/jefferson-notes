@@ -1,8 +1,17 @@
 JeffersonNotes::Application.routes.draw do
+  get "milestones/index"
+  get "milestones/show"
   get "static_pages/about"
   get "static_pages/credits"
   get "static_pages/navigation"
   get "static_pages/reading"
+
+  #get "milestones" => "milestones#index"
+  #get "milestones/show/:id" => "milestones#show"
+
+  resources :milestones
+
+  resources :pages
   #
   resources :witnesses do
     resources :pages

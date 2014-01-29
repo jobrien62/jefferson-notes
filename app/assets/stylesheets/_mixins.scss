@@ -1,0 +1,54 @@
+// Defines mixins and extend classes.
+// http://stackoverflow.com/a/14841491/626625
+
+// Updated microclearfix, includes width:100%.
+@mixin clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display:table;
+        width:100%;
+    }
+}
+
+%clearfix {
+    @include clearfix;
+}
+
+// Hide from both screenreaders and browsers: h5bp.com/u
+@mixin hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+%hidden {
+    @include hidden;
+}
+
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+@mixin visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    &.focusable {
+        &:active,
+        &:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+    }
+}
+
+%visuallyhidden {
+    @include visuallyhidden;
+}

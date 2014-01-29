@@ -4,6 +4,8 @@ class Page < ActiveRecord::Base
 
   belongs_to :witness
 
+  has_and_belongs_to_many :images
+
   def next
     witness.pages.where("id > ?", id).order("id ASC").first
   end

@@ -1,5 +1,13 @@
-<% @pages.each do |page| %>
-  <div class="image-block">
-      <%= link_to image_tag('http://baconmockup.com/150/200'), witness_page_path(@witness, page) %>
-  </div>
-<% end %>
+<div class="pages">
+  <% @pages.each do |page| %>
+    <div class="thumbnails">
+      <% unless page.images.count == 0 %>
+        <div class="thumbnail">
+          <%= link_to image_tag(fedora_squarethumb(page.images.first.pid)), page_path(page) %>
+         </div>
+
+        <%#= link_to(image_tag(fedora_url(page.images.first.pid, 150, 200)), page_path(page)) %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
