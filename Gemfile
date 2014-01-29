@@ -62,6 +62,7 @@ group :development do
   gem 'guard-livereload'
   gem 'rb-fsevent', :require => false
   gem 'sprockets_better_errors'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do
@@ -72,6 +73,7 @@ group :development, :test do
   gem "database_cleaner", "~> 1.2.0"
   gem "faker", "~> 1.2.0"
   gem 'coveralls', require: false
+  gem 'dotenv-rails'
 end
 
 group :test do
