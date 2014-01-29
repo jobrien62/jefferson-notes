@@ -1,4 +1,8 @@
 JeffersonNotes::Application.configure do
+
+  # for sprockets_better_errors
+  config.assets.raise_production_errors = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

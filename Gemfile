@@ -61,6 +61,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'rb-fsevent', :require => false
+  gem 'sprockets_better_errors'
 end
 
 group :development, :test do
