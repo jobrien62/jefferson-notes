@@ -11,8 +11,35 @@ namespace :import do
   task :reset => ['db:reset', :all]
 
   def mapPageToPids(page)
-    
     pids = {}
+  end
+
+  desc "Generate Milestones"
+  task :milestones => :environment do
+    source = File.open('./lib/assets/queries.html')
+    doc = Nokogiri::HTML(source)
+
+    order = 0
+
+    doc.css('div[@class="query"]').each do |query|
+      slug = query.attribute('id').value
+      title = slug.split('-').join(' ').titleize
+      content = query.to_html(encoding: 'US-ASCII')
+      order += 1
+
+      ap "Adding #{title}..."
+
+      Milestone.create(
+        title: title,
+        slug: slug,
+        order: order += 1,
+        content: content
+      )
+
+    end
+
+    ap "Done"
+
   end
 
   desc "Prepare queries for database"
@@ -37,10 +64,10 @@ namespace :import do
       end
 
       #Milestone.create(
-        #order: order,
-        #content: content,
-        #title: title,
-        #slug: slug
+      #order: order,
+      #content: content,
+      #title: title,
+      #slug: slug
       #)
 
       ap "Created #{title}"
