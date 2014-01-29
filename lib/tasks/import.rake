@@ -39,7 +39,13 @@ namespace :import do
     end
 
     ap "Done"
+  end
 
+  desc "Report number of paragraphs"
+  task :count_paragraphs => :environment do
+    source = File.open('./lib/assets/queries.html')
+    doc = Nokogiri::HTML(source)
+    ap doc.search("//table").size
   end
 
   desc "Prepare queries for database"
