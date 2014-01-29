@@ -41,6 +41,8 @@ gem "friendly_id", "~> 5.0.0"
 
 gem 'awesome_print'
 
+gem "rsolr"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -62,7 +64,6 @@ group :development do
   gem 'guard-livereload'
   gem 'rb-fsevent', :require => false
   gem 'sprockets_better_errors'
-  gem 'dotenv-rails'
 end
 
 group :development, :test do

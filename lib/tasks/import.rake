@@ -1,6 +1,7 @@
 require 'nokogiri'
 require "awesome_print"
 require "csv"
+require "rsolr"
 
 namespace :import do
 
@@ -12,6 +13,48 @@ namespace :import do
 
   def mapPageToPids(page)
     pids = {}
+  end
+
+  def parse_data
+    source = File.open('./lib/assets/queries.html')
+    Nokogiri::HTML(source)
+  end
+
+  desc "Index milestones"
+  task :index => :environment do
+    doc = parse_data
+    solr = RSolr.connect :url => ENV['SOLR_URL']
+    documents = Array.new
+
+    doc.css('div[@class="query"]').each do |query|
+      slug = query.attribute('id').value
+      title = slug.split('-').join(' ').titleize
+
+      query.css('p').each do |payload|
+        content = payload.text
+        id = payload.attribute('id')
+
+        if id.nil?
+          ap content
+        end
+
+
+        index_doc = {
+          id: payload.attribute('id'),
+          slug: slug,
+          title: title,
+          section: content
+        }
+        documents.push(index_doc)
+      end
+    end
+
+    ap "Sending to server"
+    solr.add documents
+    solr.commit
+    solr.optimize
+
+    ap "Done"
   end
 
   desc "Generate Milestones"
@@ -65,7 +108,6 @@ namespace :import do
       query.css('[@class="pagenum"]').each do |page|
         page = page.attribute('id').value
 
-        #page = page.attribute('id').value.scan(/\d+/).first.map(&:to_i)
         pids = mapPageToPids(page)
       end
 
