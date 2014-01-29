@@ -11,6 +11,7 @@
 and we found <%= pluralize(@response["response"]["numFound"], 'match') %>.
 </p>
 
- <% @response["response"]["docs"].each do |doc| %>
-   <p><%= link_to(doc["title"], controller: "milestones", action: "show", id: doc["slug"]) %></p>
+<% @response["response"]["docs"].each do |doc| %>
+  <% link_path = doc["slug"] + "#" + doc["id"] %>
+  <p><a href="/milestones/<%= link_path %>"><%= doc['title'] %></a>
 <% end %>
