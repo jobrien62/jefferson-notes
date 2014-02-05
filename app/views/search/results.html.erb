@@ -13,7 +13,10 @@ and we found <%= pluralize(@response["response"]["numFound"], 'match') %>.
 
 <% @response["response"]["docs"].each do |doc| %>
   <% link_path = doc["slug"] + "#" + doc["id"] %>
-  <p><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a>
+  <p><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></p>
+  <%# TODO clean this up!!! %>
+  <p><%= highlight(truncate(doc["section"].first, length: 250), params[:q]) %></p>
 <% end %>
+
 
 <%= will_paginate @response["response"]["docs"] %>
