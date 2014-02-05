@@ -1,3 +1,7 @@
+<% content_for :title do %>
+   <%= @milestone.title %>
+<% end %>
+
 <h1><%= @milestone.title %></h1>
 
 <%= highlight(@milestone.content.html_safe, params[:highlight]) %>
