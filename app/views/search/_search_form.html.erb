@@ -1,0 +1,4 @@
+<%= form_tag("/search/results", method: "get")  do  %>
+  <%= search_field_tag(:q, params[:q], {:placeholder => "Search for..."}) %>
+  <%= submit_tag("Search") %>
+<% end %>

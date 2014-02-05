@@ -1,7 +1,4 @@
 <h1>Search</h1>
 
-<%= form_tag("/search/results", method: "get")  do  %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<%= render("search_form") %>
+
