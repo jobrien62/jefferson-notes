@@ -15,3 +15,5 @@ and we found <%= pluralize(@response["response"]["numFound"], 'match') %>.
   <% link_path = doc["slug"] + "#" + doc["id"] %>
   <p><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a>
 <% end %>
+
+<%= will_paginate @response["response"]["docs"] %>

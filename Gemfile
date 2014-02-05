@@ -41,8 +41,9 @@ gem "friendly_id", "~> 5.0.0"
 
 gem 'awesome_print'
 
-gem "rsolr"
+gem "rsolr", "~>1.0.9"
 
+gem "will_paginate", "~>3.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

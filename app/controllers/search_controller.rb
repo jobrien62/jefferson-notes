@@ -7,8 +7,9 @@ class SearchController < ApplicationController
 
   def results
     solr = RSolr.connect :url => ENV['SOLR_URL']
-    @response = solr.get 'select', :params => {
-      :q=>params[:q]
+
+    @response = solr.paginate params[:page], 20, 'select', :params => {
+      :q => params[:q]
     }
   end
 end
