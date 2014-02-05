@@ -1,18 +1,25 @@
-<h1>Results</h1>
-
-<%= render("search_form") %>
-
-<p>
-  You searched for <strong><%= params[:q] %></strong>
-and we found <%= pluralize(@response["response"]["numFound"], 'match') %>.
-</p>
-
-<% @response["response"]["docs"].each do |doc| %>
-  <% link_path = doc["slug"] + "#" + doc["id"] %>
-  <p><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></p>
-  <%# TODO clean this up!!! %>
-  <p><%= highlight(truncate(doc["section"].first, length: 250), params[:q]) %></p>
-<% end %>
+<section>
+  <header>
+    <h1>Results for "<span><%= params[:q] %></span>" </h1>
+    <p>
+      <%= pluralize(@response["response"]["numFound"], 'result') %>
+    </p>
+    <%= render("search_form") %>
 
 
-<%= will_paginate @response["response"]["docs"] %>
+  </header>
+  <article>
+  <% @response["response"]["docs"].each do |doc| %>
+      <% link_path = doc["slug"] + "?highlight=" + params[:q] + "#" + doc["id"] %>
+      <header>
+        <h1><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></h1>
+      </header>
+      <%# TODO clean this up!!! %>
+      <p><%= highlight(truncate(doc["section"].first, length: 250), params[:q]) %></p>
+  <% end %>
+  </article>
+
+  <nav>
+    <%= will_paginate @response["response"]["docs"] %>
+  </nav>
+</section>

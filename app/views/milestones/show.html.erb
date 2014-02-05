@@ -1,6 +1,6 @@
 <h1><%= @milestone.title %></h1>
 
-<%= @milestone.content.html_safe %>
+<%= highlight(@milestone.content.html_safe, params[:highlight]) %>
 
 <div class="pagination">
   <%= link_to "Previous", [@milestone.prev], class: "previous" unless @milestone.prev.nil? %>
