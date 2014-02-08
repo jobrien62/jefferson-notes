@@ -1,0 +1,38 @@
+$font-size-base:          14px !default;
+
+
+$zindex-popover:           1010 !default;
+
+$popover-bg:                          #fff !default;
+//** Popover maximum width
+$popover-max-width:                   276px !default;
+//** Popover border color
+$popover-border-color:                rgba(0,0,0,.2) !default;
+//** Popover fallback border color
+$popover-fallback-border-color:       #ccc !default;
+
+//** Popover title background color
+$popover-title-bg:                    darken($popover-bg, 3%) !default;
+
+//** Popover arrow width
+$popover-arrow-width:                 10px !default;
+//** Popover arrow color
+$popover-arrow-color:                 #fff !default;
+
+//** Popover outer arrow width
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+//** Popover outer arrow color
+$popover-arrow-outer-color:           rgba(0,0,0,.25) !default;
+//** Popover outer arrow fallback color
+$popover-arrow-outer-fallback-color:  #999 !default;
+
+$border-radius-base:        4px !default;
+$border-radius-large:       6px !default;
+
+
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
