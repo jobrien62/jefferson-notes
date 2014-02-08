@@ -30,14 +30,13 @@ namespace :import do
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
 
-      query.css('p').each do |payload|
+      query.css('p|div').each do |payload|
         content = payload.text
         id = payload.attribute('id')
 
         if id.nil?
           ap content
         end
-
 
         index_doc = {
           id: payload.attribute('id'),
@@ -67,7 +66,7 @@ namespace :import do
     doc.css('div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
-      content = query.to_html(encoding: 'US-ASCII')
+      content = query.to_html(encoding: 'utf-8')
       order += 1
 
       ap "Adding #{title}..."
@@ -119,32 +118,6 @@ namespace :import do
       #)
 
       ap "Created #{title}"
-    end
-
-  end
-
-
-  desc "Map the HTML file to the schema"
-  task :docs => :environment do
-    source = File.open("./lib/assets/stockdale_processed.html")
-    doc = Nokogiri::HTML(source)
-
-    order = 0
-
-    ap "Adding pages..."
-    doc.css('div[@class="page"]').each do |page|
-      order += 1
-      page_no = page.attribute('id').value.to_i
-      notes = page.attribute('id').to_str
-
-      Page.create(
-        content: page.to_html(encoding:'US-ASCII'),
-        page_number: page_no,
-        witness_id: 1,
-        #slug: page.attribute('id').to_str,
-        order: order,
-        notes: notes
-      )
     end
 
   end
