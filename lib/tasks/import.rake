@@ -9,7 +9,7 @@ namespace :import do
   task :all => [:docs, :images, :page_images]
 
   desc "Convenience wrapper for resetting the database"
-  task :reset => ['db:reset', :all]
+  task :reset => ['db:reset', :milestones]
 
   def mapPageToPids(page)
     pids = {}
@@ -17,7 +17,7 @@ namespace :import do
 
   def parse_data
     source = File.open('./lib/assets/queries.html')
-    Nokogiri::HTML(source)
+    Nokogiri::XML(source)
   end
 
   desc "Index milestones"
@@ -26,11 +26,11 @@ namespace :import do
     solr = RSolr.connect :url => ENV['SOLR_URL']
     documents = Array.new
 
-    doc.css('div[@class="query"]').each do |query|
+    doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
 
-      query.css('p|div').each do |payload|
+      query.xpath('//p|div').each do |payload|
         content = payload.text
         id = payload.attribute('id')
 
@@ -58,12 +58,11 @@ namespace :import do
 
   desc "Generate Milestones"
   task :milestones => :environment do
-    source = File.open('./lib/assets/queries.html')
-    doc = Nokogiri::HTML(source)
+    doc = parse_data
 
     order = 0
 
-    doc.css('div[@class="query"]').each do |query|
+    doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
       content = query.to_html()
@@ -90,37 +89,37 @@ namespace :import do
     ap doc.search("//table").size
   end
 
-  desc "Prepare queries for database"
-  task :queries => :environment do
-    source = File.open('./lib/assets/queries.html')
-    doc = Nokogiri::HTML(source)
+  #desc "Prepare queries for database"
+  #task :queries => :environment do
+    #source = File.open('./lib/assets/queries.html')
+    #doc = Nokogiri::HTML(source)
 
-    order = 0
+    #order = 0
 
-    doc.css('div[@class="query"]').each do |query|
-      order += 1
+    #doc.css('div[@class="query"]').each do |query|
+      #order += 1
 
-      slug = query.attribute('id').value
-      title = slug.split('-').join(' ').titleize
-      content = query.to_html(encoding: 'US-ASCII')
+      #slug = query.attribute('id').value
+      #title = slug.split('-').join(' ').titleize
+      #content = query.to_html(encoding: 'US-ASCII')
 
-      query.css('[@class="pagenum"]').each do |page|
-        page = page.attribute('id').value
+      #query.css('[@class="pagenum"]').each do |page|
+        #page = page.attribute('id').value
 
-        pids = mapPageToPids(page)
-      end
+        #pids = mapPageToPids(page)
+      #end
 
-      #Milestone.create(
-      #order: order,
-      #content: content,
-      #title: title,
-      #slug: slug
-      #)
+      ##Milestone.create(
+      ##order: order,
+      ##content: content,
+      ##title: title,
+      ##slug: slug
+      ##)
 
-      ap "Created #{title}"
-    end
+      #ap "Created #{title}"
+    #end
 
-  end
+  #end
 
   def construct_filename(prefix, file)
     "#{prefix}#{file}".gsub('.tif', '.jpg')
