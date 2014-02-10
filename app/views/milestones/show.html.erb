@@ -1,16 +1,24 @@
 <% content_for :title do %>
-   <%= @milestone.title %>
- <% end %>
+  <%= @milestone.title %>
+<% end %>
 
- <% content_for :header do %>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
- <% end %>
+<% content_for :header do %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+<% end %>
 
-<h1><%= @milestone.title %></h1>
+<div class="milestone transcription">
+  <h1><%= @milestone.title %></h1>
+  <%= highlight(@milestone.content.html_safe, params[:highlight]) %>
+</div>
 
-<%= highlight(@milestone.content.html_safe, params[:highlight]) %>
+<div class="thumbnails">
+  <div class="thumbnail">
+    <p><img src="http://baconmockup.com/150/200" /></p>
+  </div>
+</div>
 
 <div class="pagination">
   <%= link_to "Previous", [@milestone.prev], class: "previous" unless @milestone.prev.nil? %>
   <%= link_to "Next", [@milestone.next], class: "next" unless @milestone.next.nil? %>
 </div>
+
