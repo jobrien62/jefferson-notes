@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe "milestones/index.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before(:each) do
+    @milestones = build_list(:milestone, 20)
+  end
+
+  it "renders attributes in div.milestones" do
+    render
+    render.should have_selector("nav#milestones")
+  end
 end
