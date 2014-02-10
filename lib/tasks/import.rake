@@ -66,7 +66,7 @@ namespace :import do
     doc.css('div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
-      content = query.to_html(encoding: 'utf-8')
+      content = query.to_html()
       order += 1
 
       ap "Adding #{title}..."
