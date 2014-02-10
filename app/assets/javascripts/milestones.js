@@ -1,10 +1,4 @@
 $(document).ready(function() {
-
-
-  $('.editorialTrigger').click(function() {
-     console.log($(this).next('.addEditorial').html());
-  });
-
   $('.editorialTrigger').popover(
     {
       title: 'Editorial Note',
