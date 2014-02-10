@@ -82,6 +82,13 @@ namespace :import do
     ap "Done"
   end
 
+  desc "Report number of authorNotes"
+  task :count_authornotes => :environment do
+    source = File.open('./lib/assets/queries.html')
+    doc = Nokogiri::HTML(source)
+    ap doc.search("//span[@class='authorNote']").size
+  end
+
   desc "Report number of paragraphs"
   task :count_paragraphs => :environment do
     source = File.open('./lib/assets/queries.html')

@@ -8,8 +8,20 @@
 @media screen {
 
   /*clean this up*/
-  .authorNote, .marginNote { display: none;}
+    /*.authorNote, .marginNote { display: none;}*/
 
+  .authorNote {
+    color: blue;
+    font-weight: bolder;
+    margin-left: 2em;
+    font-size: 80%;
+  }
+
+  .marginNote {
+    font-weight: bolder;
+    color: red;
+    margin-left: -50px;
+  }
 
   @import "mixins";
 
