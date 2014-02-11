@@ -1,4 +1,6 @@
 <%= form_tag("/search/results", method: "get")  do  %>
+  <%= label_tag(:q, :id => "search-label") do |s| %>
+      <span class="fontawesome-search"></span>
+  <% end %>
   <%= search_field_tag(:q, params[:q], {:placeholder => "Search for..."}) %>
-  <%= submit_tag("Search") %>
 <% end %>
