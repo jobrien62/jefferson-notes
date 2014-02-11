@@ -11,11 +11,6 @@
   <%= highlight(@milestone.content.html_safe, params[:highlight]) %>
 </div>
 
-<div class="thumbnails">
-  <div class="thumbnail">
-    <p><img src="http://baconmockup.com/150/200" /></p>
-  </div>
-</div>
 
 <div class="pagination">
   <%= link_to "Previous", [@milestone.prev], class: "previous" unless @milestone.prev.nil? %>

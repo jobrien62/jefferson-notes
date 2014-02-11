@@ -10,19 +10,7 @@
   /*clean this up*/
     /*.authorNote, .marginNote { display: none;}*/
 
-  .authorNote {
-    color: blue;
-    font-weight: bolder;
-    margin-left: 2em;
-    font-size: 80%;
-  }
-
-  .marginNote {
-    font-weight: bolder;
-    color: red;
-    margin-left: -50px;
-  }
-
+  
   @import "mixins";
 
     * {
@@ -254,16 +242,26 @@
 
         @media (min-width:700px) {
 
-        .pages & {
-            .transcription {
-                @include span(7 of 14);
-                @include trailer(1);
-            }
-            .thumbnails {
-                @include span(last 6 of 14);
-            }
+        .milestones & {
+            width: auto;
+            /*@include bleed;*/
 
-            }
+            .milestone {
+               @include pad(3,3);
+
+              .marginNote {
+                @include pull(3);
+                font-weight: bolder;
+                color: red;
+              }
+
+              .thumbs {
+                  @include push(12);
+               }
+
+
+             }
+         }
         }
 
         .thumbnail {
