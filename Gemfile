@@ -8,6 +8,7 @@ gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem "compass-rails", "~> 1.1.2"
 gem "susy", "~> 2.0.0.alpha.4"
+gem "roman-numerals", "~> 0.3.0"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

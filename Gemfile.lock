@@ -173,6 +173,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    roman-numerals (0.3.0)
     rsolr (1.0.9)
       builder (>= 2.1.2)
     rspec (2.14.1)
@@ -275,6 +276,7 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails_12factor
   rb-fsevent
+  roman-numerals (~> 0.3.0)
   rsolr (~> 1.0.9)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)

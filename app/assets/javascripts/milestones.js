@@ -1,3 +1,4 @@
+"use strict"
 $(document).ready(function() {
   $('.editorialTrigger').popover(
     {
@@ -11,4 +12,9 @@ $(document).ready(function() {
       html: true,
     }
   );
+
+  $('.fa-bars').click(function() {
+    $("#toc").toggle("slow");
+  });
+
 });
