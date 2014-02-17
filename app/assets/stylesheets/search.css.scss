@@ -14,7 +14,7 @@ $background-hover: #e74c3c;
   /*position: relative;*/
   width: $width;
 
-  & input {
+  input {
     outline: none; /* Removes the browsers default outline when focus */
     border: 0;
     background: #fff;
@@ -73,6 +73,7 @@ $background-hover: #e74c3c;
   /*@include transition(all 0.2s ease);*/
 
 /*}*/
+
 
 /*#search input:focus {*/
   /*width: $width;*/
