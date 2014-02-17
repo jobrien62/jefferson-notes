@@ -2,14 +2,11 @@
   <ul>
     <li><%= link_to 'About', static_pages_about_path %></li>
     <li><%= link_to 'Credits', static_pages_credits_path %></li>
-    <!-- <li><%#= link_to 'Search', search_path %></li> -->
     <li class="search">
-
-    <form action="/search/results/" id="search" method="get" name="search">
-      <label for="q" id="search-label"><span class="fontawesome-search fa-search"></span></label> 
-      <input id="q" name="q" placeholder="Start Searching.." type="text"/>
-    </form>
-
+      <form action="/search/results" method="get" accept-charset="utf-8">
+        <input type="text" name="search-input" id="search-input" class="searchfield" placeholder="Search..." />
+        <input type="submit" name="search-btn" id="search-btn" value="" />
+      </form>
     </li>
   </ul>
 </nav>
