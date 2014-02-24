@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require underscore/underscore
 //= require modernizr/modernizr
+//= require retina.js/src/retina
 //= require_tree .
