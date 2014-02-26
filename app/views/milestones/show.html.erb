@@ -1,3 +1,6 @@
+  <%= render "milestones/navigation" %>
+
+
 <% content_for :title do %>
   <%= @milestone.title %>
 <% end %>
@@ -13,9 +16,6 @@
   <%= highlight(@milestone.content.html_safe, params[:highlight]) %>
 </div>
 
+  <%= render "milestones/navigation" %>
 
-<div class="pagination">
-  <%= link_to "Previous", [@milestone.prev], class: "previous" unless @milestone.prev.nil? %>
-  <%= link_to "Next", [@milestone.next], class: "next" unless @milestone.next.nil? %>
-</div>
 

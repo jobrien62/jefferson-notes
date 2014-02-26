@@ -1,0 +1,4 @@
+<div class="pagination">
+  <%= link_to "Previous", [@milestone.prev], class: "previous" unless @milestone.prev.nil? %>
+  <%= link_to "Next", [@milestone.next], class: "next" unless @milestone.next.nil? %>
+</div>
