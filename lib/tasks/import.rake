@@ -5,6 +5,12 @@ require "rsolr"
 
 namespace :import do
 
+  FEDORA_PREFIX="http://fedoraproxy.lib.virginia.edu/fedora/objects"
+
+  def fedora_thumb(pid)
+    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getThumbnail"
+  end
+
   desc "Convenience wrapper for all the tasks"
   task :all => [:docs, :images, :page_images]
 
@@ -13,6 +19,8 @@ namespace :import do
 
   def mapPageToPids(page)
     pids = {}
+
+    
   end
 
   def parse_data
@@ -56,6 +64,24 @@ namespace :import do
     ap "Done"
   end
 
+  def make_link(page)
+    pid_1787 = "uva-lib:" + (763482 + page.to_i).to_s
+    pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
+
+    thumb_1787 = fedora_thumb(pid_1787)
+    thumb_1784 = fedora_thumb(pid_1784)
+
+    fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
+       <div class="thumbs">
+        <img alt='1787 Edition' class='thumb' src='#{thumb_1787}' />
+        <img alt='1784 Edition' src='#{thumb_1784}' />
+      </div>
+    EOHTML
+
+    fragment
+
+  end
+
 
   desc "Generate Milestones"
   task :milestones => :environment do
@@ -63,13 +89,22 @@ namespace :import do
 
     order = 0
 
+
     doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
-      content = query.to_html()
+      #content = query.to_html()
       order += 1
 
       ap "Adding #{title}..."
+
+     query.xpath('.//span[@class="pagenum"]').each do |page|
+        page_id = page.attribute('id').value.scan(/\d+/).join
+        thumbnails = make_link(page_id)
+        page.add_next_sibling(thumbnails)
+      end
+
+     content = query.to_html
 
       Milestone.create(
         title: title,
