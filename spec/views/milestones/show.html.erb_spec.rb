@@ -4,8 +4,8 @@ describe "milestones/show.html.erb" do
 
   before(:each) do
     @milestone = FactoryGirl.build(:milestone)
+    @milestones = build_list(:milestone, 20)
   end
-
 
   it "renders attributes in div.milestone" do
     render
