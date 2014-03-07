@@ -20,7 +20,7 @@ namespace :import do
   def mapPageToPids(page)
     pids = {}
 
-    
+
   end
 
   def parse_data
@@ -38,7 +38,7 @@ namespace :import do
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
 
-      query.xpath('//p|div').each do |payload|
+      query.xpath('//p|div|table').each do |payload|
         content = payload.text
         id = payload.attribute('id')
 
@@ -82,6 +82,10 @@ namespace :import do
 
   end
 
+  def parse_page(page_element)
+    page_element.attribute('id').value.scan(/\d+/).join
+  end
+
 
   desc "Generate Milestones"
   task :milestones => :environment do
@@ -90,6 +94,7 @@ namespace :import do
     order = 0
 
 
+    #doc.xpath('//div[@class="query"]').each do |query|
     doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titleize
@@ -98,13 +103,14 @@ namespace :import do
 
       ap "Adding #{title}..."
 
-     query.xpath('.//span[@class="pagenum"]').each do |page|
-        page_id = page.attribute('id').value.scan(/\d+/).join
+      query.xpath('.//span[@class="pagenum"]').each do |page|
+        #page_id = page.attribute('id').value.scan(/\d+/).join
+        page_id = parse_page(page)
         thumbnails = make_link(page_id)
         page.add_next_sibling(thumbnails)
       end
 
-     content = query.to_html
+      content = query.to_html
 
       Milestone.create(
         title: title,
@@ -134,33 +140,33 @@ namespace :import do
 
   #desc "Prepare queries for database"
   #task :queries => :environment do
-    #source = File.open('./lib/assets/queries.html')
-    #doc = Nokogiri::HTML(source)
+  #source = File.open('./lib/assets/queries.html')
+  #doc = Nokogiri::HTML(source)
 
-    #order = 0
+  #order = 0
 
-    #doc.css('div[@class="query"]').each do |query|
-      #order += 1
+  #doc.css('div[@class="query"]').each do |query|
+  #order += 1
 
-      #slug = query.attribute('id').value
-      #title = slug.split('-').join(' ').titleize
-      #content = query.to_html(encoding: 'US-ASCII')
+  #slug = query.attribute('id').value
+  #title = slug.split('-').join(' ').titleize
+  #content = query.to_html(encoding: 'US-ASCII')
 
-      #query.css('[@class="pagenum"]').each do |page|
-        #page = page.attribute('id').value
+  #query.css('[@class="pagenum"]').each do |page|
+  #page = page.attribute('id').value
 
-        #pids = mapPageToPids(page)
-      #end
+  #pids = mapPageToPids(page)
+  #end
 
-      ##Milestone.create(
-      ##order: order,
-      ##content: content,
-      ##title: title,
-      ##slug: slug
-      ##)
+  ##Milestone.create(
+  ##order: order,
+  ##content: content,
+  ##title: title,
+  ##slug: slug
+  ##)
 
-      #ap "Created #{title}"
-    #end
+  #ap "Created #{title}"
+  #end
 
   #end
 
