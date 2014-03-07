@@ -4,11 +4,9 @@ class Milestone < ActiveRecord::Base
 
   def next
     self.class.order("id").where("id > ?", self.id).first
-    #self.where("id > ?", id).order("id ASC").first
   end
 
   def prev
-    #self.class.order("id", id).order("id DESC").first
-    self.class.order("id").where("id < ?", self.id).first
+    self.class.order("id").where("id < ?", self.id).last
   end
 end
