@@ -11,6 +11,10 @@ namespace :import do
     "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getThumbnail"
   end
 
+  def fedora_full(pid)
+    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getStaticImage"
+  end
+
   desc "Convenience wrapper for all the tasks"
   task :all => [:docs, :images, :page_images]
 
@@ -69,12 +73,18 @@ namespace :import do
     pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
 
     thumb_1787 = fedora_thumb(pid_1787)
+    full_1787 = fedora_full(pid_1787)
     thumb_1784 = fedora_thumb(pid_1784)
+    full_1784 = fedora_full(pid_1784)
 
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs">
+       <a href="#{full_1787}">
         <img alt='1787 Edition' class='thumb lazy' width="89" height="125" data-original='#{thumb_1787}' />
-        <img alt='1784 Edition' class="thumb lazy' width="89" height="125" data-original='#{thumb_1784}' />
+       </a>
+       <a href="#{full_1784}">
+        <img alt='1784 Edition' class="thumb lazy" width="89" height="125" data-original='#{thumb_1784}' />
+       </a>
       </div>
     EOHTML
 
