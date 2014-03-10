@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe "search/index.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders a earch form" do
+    render
+    render.should have_selector("form")
+  end
 end

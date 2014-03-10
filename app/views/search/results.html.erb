@@ -8,7 +8,7 @@
 
 
   </header>
-  <article>
+  <article id="search_results">
   <% @response["response"]["docs"].each do |doc| %>
       <% link_path = doc["slug"] + "?highlight=" + params[:q] + "#" + doc["id"] %>
       <header>
