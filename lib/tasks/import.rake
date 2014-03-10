@@ -73,8 +73,8 @@ namespace :import do
 
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs">
-        <img alt='1787 Edition' class='thumb' src='#{thumb_1787}' />
-        <img alt='1784 Edition' src='#{thumb_1784}' />
+        <img alt='1787 Edition' class='thumb lazy' width="89" height="125" data-original='#{thumb_1787}' />
+        <img alt='1784 Edition' class="thumb lazy' width="89" height="125" data-original='#{thumb_1784}' />
       </div>
     EOHTML
 

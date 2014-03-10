@@ -17,4 +17,9 @@ $(document).ready(function() {
     $("#toc").toggle("slow");
   });
 
+  $('img.lazy').lazyload({
+    effect: "fadeIn",
+    failure_limit: 10
+  });
+
 });

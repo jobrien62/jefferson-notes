@@ -19,6 +19,7 @@
     "underscore": "*",
     "modernizr": "~2.6.2",
     "bootstrap-sass": "",
-    "retina.js": "~1.2.0"
+    "retina.js": "~1.2.0",
+    "jquery.lazyload": "~1.9.3"
   }
 }
