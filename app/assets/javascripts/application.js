@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require underscore/underscore
 //= require modernizr/modernizr
-//= require ol3-scripts/ol
 //= require retina.js/src/retina
 //= require jquery.lazyload/jquery.lazyload
 //= require_tree .
