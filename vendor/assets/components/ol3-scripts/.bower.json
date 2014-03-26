@@ -1,0 +1,25 @@
+{
+  "name": "ol3-scripts",
+  "main": "ol.min.js",
+  "location": "https://github.com/luscus/ol3-scripts",
+  "description": "ol3-scripts only wraps the compiled OpenLayers 3.x scripts available at http://ol3js.org/en/master/build",
+  "keywords": [
+    "openlayers",
+    "openlayers 3",
+    "ol3"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/luscus/ol3-scripts",
+  "_release": "a6c4eb3af9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a6c4eb3af9ad0775fd6520ed7fc681d0d128dac8"
+  },
+  "_source": "git://github.com/luscus/ol3-scripts.git",
+  "_target": "*",
+  "_originalSource": "ol3-scripts",
+  "_direct": true
+}

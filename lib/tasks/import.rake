@@ -68,7 +68,7 @@ namespace :import do
     ap "Done"
   end
 
-  def make_link(page)
+  def make_link(page, slug)
     pid_1787 = "uva-lib:" + (763482 + page.to_i).to_s
     pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
 
@@ -77,8 +77,16 @@ namespace :import do
     thumb_1784 = fedora_thumb(pid_1784)
     full_1784 = fedora_full(pid_1784)
 
+    #ap "#{slug}, #{pid_1787}, #{page.to_i}"
+
+     MilestonesImages.create(
+        page_id: page.to_i,
+        slug: slug,
+        fedora_pid: pid_1787
+      )
+
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
-       <div class="thumbs">
+       <div class="thumbs" id="#{page.to_i}">
        <a href="#{full_1787}">
         <img alt='1787 Edition' class='thumb lazy' width="89" height="125" data-original='#{thumb_1787}' />
        </a>
@@ -100,9 +108,10 @@ namespace :import do
   desc "Generate Milestones"
   task :milestones => :environment do
     doc = parse_data
-
+    #csv = CSV.read './lib/assets/pages-correlate-no-sync.csv'
+    #csv_text = source = File.open("./lib/assets/pages-correlate-no-sync.csv")
+    #csv = CSV.parse(csv_text, :headers => true)
     order = 0
-
 
     #doc.xpath('//div[@class="query"]').each do |query|
     doc.xpath('//div[@class="query"]').each do |query|
@@ -114,9 +123,11 @@ namespace :import do
       ap "Adding #{title}..."
 
       query.xpath('.//span[@class="pagenum"]').each do |page|
+
         #page_id = page.attribute('id').value.scan(/\d+/).join
         page_id = parse_page(page)
-        thumbnails = make_link(page_id)
+
+        thumbnails = make_link(page_id, slug)
         page.add_next_sibling(thumbnails)
       end
 

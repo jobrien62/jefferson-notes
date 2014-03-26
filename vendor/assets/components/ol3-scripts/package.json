@@ -1,0 +1,18 @@
+{
+  "name": "ol3-scripts",
+  "version": "0.0.1",
+  "author": "https://github.com/luscus/ol3-scripts/graphs/contributors",
+  "homepage": "https://github.com/luscus/ol3-scripts",
+  "description": "ol3-scripts only wraps the compiled OpenLayers 3.x scripts available at http://ol3js.org/en/master/build",
+  "keywords": [
+    "openlayers",
+    "openlayers 3",
+    "ol3"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/luscus/ol3-scripts.git"
+  },
+  "bugs": "https://github.com/luscus/ol3-scripts/issues",
+}
+

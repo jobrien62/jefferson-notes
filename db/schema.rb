@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212155221) do
+ActiveRecord::Schema.define(version: 20140326162724) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -36,16 +36,6 @@ ActiveRecord::Schema.define(version: 20131212155221) do
 
   add_index "images", ["witness_id"], name: "index_images_on_witness_id"
 
-  create_table "images_pages", force: true do |t|
-    t.integer  "page_id"
-    t.integer  "image_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "images_pages", ["image_id"], name: "index_images_pages_on_image_id"
-  add_index "images_pages", ["page_id"], name: "index_images_pages_on_page_id"
-
   create_table "milestones", force: true do |t|
     t.string   "title"
     t.string   "slug"
@@ -55,31 +45,13 @@ ActiveRecord::Schema.define(version: 20131212155221) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", force: true do |t|
-    t.text     "content"
-    t.integer  "page_number"
-    t.text     "notes"
+  create_table "milestones_images", force: true do |t|
+    t.integer  "page_id"
+    t.string   "fedora_pid"
+    t.string   "slug"
+    t.integer  "milestones_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "witness_id"
-    t.string   "slug"
-    t.integer  "order"
   end
-
-  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true
-  add_index "pages", ["witness_id"], name: "index_pages_on_witness_id"
-
-  create_table "witnesses", force: true do |t|
-    t.string   "author"
-    t.string   "title"
-    t.string   "publisher"
-    t.string   "location"
-    t.integer  "year"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "slug"
-  end
-
-  add_index "witnesses", ["slug"], name: "index_witnesses_on_slug", unique: true
 
 end

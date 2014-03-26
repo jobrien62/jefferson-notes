@@ -1,4 +1,5 @@
 JeffersonNotes::Application.routes.draw do
+  get "images_milestones/index"
   get "milestones/index"
   get "milestones/show"
 
@@ -8,6 +9,7 @@ JeffersonNotes::Application.routes.draw do
   get "static_pages/about"
   get "static_pages/credits"
   get "static_pages/navigation"
+  get "static_pages/map"
   get "static_pages/reading"
 
   #get "milestones" => "milestones#index"

@@ -24,4 +24,5 @@ module ApplicationHelper
     image_tag(default, :size => "#{width}x#{height}", :alt => alt, :data => { 'at2x' => retina })
   end
 
+
 end
