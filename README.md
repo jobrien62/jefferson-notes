@@ -25,3 +25,12 @@ $ rake import:docs
 $ rake import:images
 $ foreman start
 ```
+
+## Deployment
+
+```shell
+$ git push heroku develop:master
+$ heroku pg:reset DATABASE
+$ heroku run rake db:migrate
+$ heroku run rake import:milestones
+```
