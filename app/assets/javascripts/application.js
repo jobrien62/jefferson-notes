@@ -18,4 +18,5 @@
 //= require modernizr/modernizr
 //= require retina.js/src/retina
 //= require jquery.lazyload/jquery.lazyload
+//= require openlayers3/build/ol.js
 //= require_tree .

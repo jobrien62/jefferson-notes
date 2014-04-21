@@ -1,7 +1,7 @@
 <style>
 .map {
-  height: 400px;
-  width: 100%;
+  height: 800px;
+  width: 200%;
   border: 1px;
 }
 </style>
@@ -12,32 +12,34 @@
 
 var layers = [
   new ol.layer.Tile({
-    source: new ol.source.TileWMS({
-      url: 'http://vmap0.tiles.osgeo.org/wms/vmap0',
-      params: {
-        'VERSION': '1.1.1',
-        'LAYERS': 'basic',
-        'FORMAT': 'image/jpeg'
-      }
-    })
+      //source: new ol.source.MapQuest({layer: 'sat'})
+      source: new ol.source.OSM()
+  }),
+  new ol.layer.Tile({
+    source: new ol.source.TileWMS(/** @type {olx.source.TileWMSOptions} */ ({
+      url: 'http://gis.lib.virginia.edu/geoserver/wms',
+      params: {'LAYERS': 'jefferson:notes', 'TILED': true},
+      attributions: [
+      new ol.Attribution({
+          html: 'Scan &copy; <a href="http://library.virginia.edu">Regents of the University of Virginia</a>'
+          }),
+      ol.source.OSM.DATA_ATTRIBUTION
+      ],
+      extent: [-9393883.308688186,4259186.656312424,-8246099.187224588,5228284.17952369],
+      serverType: 'geoserver'
+    }))
   })
 ];
-
 var map = new ol.Map({
   controls: ol.control.defaults().extend([
-    new ol.control.ScaleLine({
-      units: 'imperial'
-    })
-  ]),
+    new ol.control.FullScreen()
+    ]),
   layers: layers,
-  // The OSgeo server does not set cross origin headers, so we cannot use WebGL
   renderer: ['canvas', 'dom'],
   target: 'map',
   view: new ol.View2D({
-    projection: 'EPSG:4326',
-    center: [0, 0],
-    zoom: 4
+    center: [-8813265, 4686337],
+    zoom: 8
   })
 });
-
 </script>
