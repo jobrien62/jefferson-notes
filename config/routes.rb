@@ -6,11 +6,11 @@ JeffersonNotes::Application.routes.draw do
   get "search" => "search#index"
   get "search/results"
 
-  get "static_pages/about"
-  get "static_pages/credits"
-  get "static_pages/navigation"
-  get "static_pages/map"
-  get "static_pages/reading"
+  get "about" => "static_pages#about"
+  get "credits" => "static_pages#credits"
+  get "navigation" => "static_pages#navigation"
+  get "map" => "static_pages#map"
+  get "reading" => "static_pages#reading"
 
   #get "milestones" => "milestones#index"
   #get "milestones/show/:id" => "milestones#show"
