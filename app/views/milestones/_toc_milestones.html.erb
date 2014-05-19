@@ -1,16 +1,3 @@
 <aside class="toc-menu" id="toc" class="toc-scroller">
-  <div class="headline">
-    <h1>Notes <small>on the</small> State <small>of</small>Virginia</h1>
-  </div>
-  <span class="author">By Thomas Jefferson</span>
-  <% counter = 0 %>
-  <nav id="milestones">
-    <% @milestones.each do |milestone| %>
-      <% title = "Query #{RomanNumerals.to_roman(counter)}." unless counter == 0%>
-    <% counter += 1 %>
-
-    <%= link_to(content_tag(:span, title) + content_tag(:span, milestone.title), milestone)%>
-
-  <% end %>
-  </nav>
+  <%= render "milestones/milestone_nav" %>
 </aside>
