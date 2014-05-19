@@ -7,10 +7,6 @@
 
 @media screen {
 
-  /*clean this up*/
-    /*.authorNote, .marginNote { display: none;}*/
-
-  
   @import "mixins";
 
     * {
@@ -26,11 +22,14 @@
         @include background-size(cover);
         background-attachment:fixed;
         background-repeat:no-repeat;
+        @media (max-width:400px) {
+        background-position: -500px bottom;
+        }
 
     }
 
     body {
-        @include container(hide);
+        @include container($grid);
         font-family: 'Libre Baskerville', Georgia, serif;
     }
 
@@ -53,6 +52,13 @@
 
     h1 {
       @include adjust-font-size-to(36px);
+      @include leader(1,36px);
+      @include trailer(2,36px);
+      main &:first-of-type {
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: rhythm(2,36px);
+      }
+
     }
 
     h2 {
@@ -76,6 +82,12 @@
     h4 {
       @include adjust-font-size-to($base-font-size);
       @include leader(2);
+
+      .milestone & {
+          @extend h2;
+          margin-top:0;
+      }
+
       h3 + & {
         @include leader(1);
       }
@@ -170,11 +182,7 @@
         color: white;
         color: rgba(white, 0.9);
         @extend %clearfix;
-
-        .home & {
-            background:transparent;
-            border:none;
-        }
+        position:relative;
 
         a {
             color: #f0f0f0;
@@ -186,6 +194,7 @@
             @include adjust-font-size-to(14px);
             @include adjust-leading-to(2,14px);
             margin:0;
+            padding:0;
             @extend %clearfix;
             font-variant:small-caps;
         }
@@ -193,31 +202,103 @@
         h1 {
             float:left;
             margin-left: 1em;
-
-            .home & {
-                @include adjust-font-size-to(60px);
-                @include adjust-leading-to(2,60px);
-                @include leader(4, 60px);
-            }
         }
 
         nav {
             float:right;
 
-            .home & {
-                display:none;
+            form {
+                margin:0;
             }
+
             li {
-                display:inline-block;
-                border-left:1px solid rgba(white, 0.1);
+                display: inline-block;
+                cursor: pointer;
+ 
+                &:hover,
+                &:focus {
+                    background: #292929;
+                }
+
                 a {
                     display:block;
-                    border-left:1px solid rgba(black, 0.1);
                     margin:0;
                     padding: 0 1em;
+                    &:hover,
+                    &:focus {
+                        background: #292929;
+                    }
+                }
 
-                    &:hover {
-                        background: rgba(white, 0.1);
+                & > ul {
+                    display:none;
+                    clear:both;
+                    position:absolute;
+                    left:0;
+                    right:0;
+                    margin-top: -1px;
+                    background: #292929;
+                    color: white;
+                    color: rgba(white, 0.9);
+                    font-size:1em;
+                    @include adjust-leading-to(1, 14px);
+
+                    &.open {
+                        display:block;
+                        padding: 3em;
+                    }
+
+                    li {
+                        display:block;
+                    }
+
+                    a {
+                        padding: 1em;
+                    }
+
+                }
+            }
+        }
+    }
+
+    ul.milestones {
+        background-color: rgba(black, 0.75);
+        margin:0;
+        list-style:none;
+        @include columns(2);
+        padding:3em;
+        @media (min-width: 700px) {
+            @include columns(4);
+        }
+
+        li {
+            display:block;
+            border:none;
+            page-break-inside:avoid;
+            -webkit-column-break-inside: avoid;
+            break-inside: avoid-column;
+            border-width: 0 0 1px 0;
+
+            &:before {
+                display:block;
+                content: " ";
+                margin:0;
+                border-top: 1px solid rgba(black, .25);
+                border-bottom: 1px solid rgba(white, .05);
+            }
+
+            a {
+                display:block;
+                border:none;
+                padding:1em;
+                text-decoration:none;
+                span {
+                    display:block;
+                    color: rgba(white, 0.5);
+                    @include adjust-font-size-to(12px);
+                    &:last-child {
+                        @include adjust-font-size-to(18px);
+                        color: rgba(white, .9);
                     }
                 }
             }
@@ -225,20 +306,42 @@
     }
 
     main {
-        @include span(8);
-
-        .pages & {
-            width:auto;
-        }
+        padding-top: rhythm(2);
+        @include pad(1,1);
+        background: #fff;
+        background: rgba(white, 0.875);
 
         .home & {
             background: transparent;
             color: #fff;
         }
 
-        background: #fff;
-        padding: span(1);
-        margin: rhythm(1) gutter(16);
+        .milestones & {
+         .milestone {
+            @include pad(0,4);
+            }
+          .thumbs {
+              margin-top: rhythm(1);
+              margin-right: -(span(3 of 10 wide));
+              border-top: 1px dotted #ccc;
+              border-color: rgba(black, 0.15);
+              clear:right;
+              &:first-of-type {
+                  margin-top:0;
+                  border-top:none;
+              }
+
+              a {
+                  float:right;
+                  clear:right;
+                  display:block;
+                  margin: rhythm(1) 0;
+              }
+
+           }
+
+
+        }
 
         @media (min-width:700px) {
 
@@ -247,27 +350,43 @@
             /*@include bleed;*/
 
             .milestone {
-               @include pad(3,3);
+               @include pad(4,4);
 
               .marginNote {
-                @include pull(3);
-                font-weight: bolder;
-                color: red;
+                margin:0;
+                margin-left: -(span(4 of 10 wide));
+                margin-top:0;
+                padding-top:0;
+                color: #999;
+                font-style:italic;
+                @include span(3 of 10);
+                @include adjust-font-size-to(14px);
+                @include adjust-leading-to(1,14px);
+                margin-top: -(rhythm(2, 14px));
               }
 
-              .thumbs {
-                  @include push(12);
-               }
+              table {
+                  padding:0;
+                  margin: rhythm(1, 12px) 0;
+                  @include adjust-font-size-to(12px);
+                  width:100%;
+                  border-collapse: collapse;
+                  border:1px solid #ccc;
 
-
+                  td {
+                      padding: .25em .5em;
+                      border-bottom:1px solid #ccc;
+                  }
+              }
              }
-         }
+        }
+
+        }
+
+        @media (min-width: 960px) {
         }
 
         .thumbnail {
-            @media (min-width: 480px) {
-                @include gallery(3 of 6 isolate);
-            }
             p {
                 margin:0;
                 @include adjust-font-size-to(14px);
@@ -276,12 +395,12 @@
             }
 
         }
+
         .pagination {
             clear:both;
-            border-top:1px solid #eee;
             @include adjust-leading-to(2);
-            @include margin-leader(1);
-
+            margin:0;
+            padding:0;
             .next {
                 float:right;
                 text-align:right;

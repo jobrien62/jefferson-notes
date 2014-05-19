@@ -13,13 +13,16 @@ $(document).ready(function() {
     }
   );
 
-  $('.fa-bars').click(function() {
-    $("#toc").toggle("slow");
-  });
-
   $('img.lazy').lazyload({
     effect: "fadeIn",
     failure_limit: 10
   });
+
+  $('#globalnav').accessibleMegaMenu();
+
+  // hack so that the megamenu doesn't show flash of css animation after the page loads.
+  setTimeout(function () {
+    $('body').removeClass('init');
+  }, 500);
 
 });

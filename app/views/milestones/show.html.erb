@@ -9,8 +9,6 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 <% end %>
 
-<%= render "milestones/toc_milestones" %>
-
 <div class="milestone transcription">
   <h1><%= @milestone.title %></h1>
   <%= highlight(@milestone.content.html_safe, params[:highlight], :sanitize => false) %>
