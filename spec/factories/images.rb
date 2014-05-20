@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :image do
-    filename "foo"
+    filename Faker::Lorem.word.to_s
     pid "foobar:12345"
-    witness nil
   end
 end

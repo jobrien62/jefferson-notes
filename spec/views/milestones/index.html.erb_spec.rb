@@ -8,6 +8,6 @@ describe "milestones/index.html.erb" do
 
   it "renders attributes in div.milestones" do
     render
-    render.should have_selector("nav#milestones")
+    render.should have_selector("ul.milestones")
   end
 end

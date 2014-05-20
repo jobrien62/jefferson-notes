@@ -11,6 +11,7 @@ JeffersonNotes::Application.routes.draw do
   get "navigation" => "static_pages#navigation"
   get "map" => "static_pages#map"
   get "reading" => "static_pages#reading"
+  get "images" => "images_milestones#index"
 
   #get "milestones" => "milestones#index"
   #get "milestones/show/:id" => "milestones#show"

@@ -1,6 +1,7 @@
 language: ruby
 rvm:
-  - 2.1.0
+  - 2.1.1
+  - 2.1.2
 env:
   - DB=sqlite
   - DB=postgresql
@@ -9,3 +10,5 @@ script:
   - bundle exec rspec spec
 before_script:
   - psql -c 'create database notes_test' -U postgres
+notifications:
+  irc: "irc.freenode.org#slab"
