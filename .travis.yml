@@ -5,10 +5,12 @@ rvm:
 env:
   - DB=sqlite
   - DB=postgresql
+  - SOLR_URL=http://sdsv1.its.virginia.edu:8080/solr/jefferson-notes/
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
   - bundle exec rspec spec
 before_script:
   - psql -c 'create database notes_test' -U postgres
+  - 
 notifications:
   irc: "irc.freenode.org#slab"
