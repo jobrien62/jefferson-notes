@@ -265,10 +265,29 @@
         background-color: rgba(black, 0.75);
         margin:0;
         list-style:none;
-        @include columns(2);
-        padding:3em;
-        @media (min-width: 700px) {
-            @include columns(4);
+        padding: 1em;
+
+        @media (min-width: 500px) {
+            padding:2em;            
+            @include columns(2);
+            -moz-column-rule: 1px solid rgba(white, 0.1);
+            -moz-column-gap: 60px;
+        }
+
+        @media (min-width: 900px) {
+            @include columns(3);
+
+            #globalnav & {
+                @include columns(4);
+            }
+
+        }
+
+        @media (min-width: 1200px) {
+            #globalnav & {
+                @include columns(6);
+            }
+
         }
 
         li {
@@ -278,14 +297,6 @@
             -webkit-column-break-inside: avoid;
             break-inside: avoid-column;
             border-width: 0 0 1px 0;
-
-            &:before {
-                display:block;
-                content: " ";
-                margin:0;
-                border-top: 1px solid rgba(black, .25);
-                border-bottom: 1px solid rgba(white, .05);
-            }
 
             a {
                 display:block;
@@ -312,8 +323,13 @@
         background: rgba(white, 0.875);
 
         .home & {
-            background: transparent;
+            background: rgba(black, 0.4);
             color: #fff;
+
+            .milestones{
+                background:none;
+            }
+
         }
 
         .milestones & {
@@ -344,6 +360,19 @@
         }
 
         @media (min-width:700px) {
+
+        .static_pages & {
+            @include pad(2,2);
+        }
+
+        .home & {
+            @include pad(1,8);
+
+            .milestones {
+                padding: 0 !important;
+            }
+        }
+
 
         .milestones & {
             width: auto;
@@ -384,6 +413,15 @@
         }
 
         @media (min-width: 960px) {
+
+            .static_pages & {
+                @include pad(3,3);
+            }
+
+            .home & {
+                @include pad(1,8);
+            }
+
         }
 
         .thumbnail {
