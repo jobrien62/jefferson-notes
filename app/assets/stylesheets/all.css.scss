@@ -51,12 +51,24 @@
     }
 
     h1 {
+      @include adjust-font-size-to(28px);
+      @include adjust-leading-to(1.5, 28px);
+      @include leader(1,28px);
+      @include trailer(2,28px);
+      main &:first-of-type {
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: rhythm(2,28px);
+      }
+
+      @media (min-width:480px) {
       @include adjust-font-size-to(36px);
+      @include adjust-leading-to(2, 36px);
       @include leader(1,36px);
       @include trailer(2,36px);
       main &:first-of-type {
         border-bottom: 1px dotted #ccc;
         padding-bottom: rhythm(2,36px);
+      }
       }
 
       .results .search_result & {
