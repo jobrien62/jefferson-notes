@@ -23,7 +23,25 @@ namespace :import do
 
   def mapPageToPids(page)
     pids = {}
+  end
 
+  def find_pid(page, edition)
+    @csv ||= @csv = CSV.read('./lib/assets/pages-correlate-no-sync.csv', headers: true)
+
+    pid_field = "#{edition}_pid"
+    page_field = "#{edition}_page"
+
+    pid = ""
+
+    @csv.each do |row|
+      if( row[page_field] == page )
+        pid = "uva-lib:#{row[pid_field]}"
+        puts pid
+      end
+      #puts row["1787_page"].class
+    end
+
+    pid
 
   end
 
@@ -69,8 +87,12 @@ namespace :import do
   end
 
   def make_link(page, slug)
-    pid_1787 = "uva-lib:" + (763482 + page.to_i).to_s
-    pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
+
+    pid_1787 = find_pid(page, 1787)
+    pid_1784 = find_pid(page, 1784)
+
+    #pid_1787 = "uva-lib:" + (763482 + page.to_i).to_s
+    #pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
 
     thumb_1787 = fedora_thumb(pid_1787)
     full_1787 = fedora_full(pid_1787)
@@ -79,11 +101,11 @@ namespace :import do
 
     #ap "#{slug}, #{pid_1787}, #{page.to_i}"
 
-     MilestonesImages.create(
-        page_id: page.to_i,
-        slug: slug,
-        fedora_pid: pid_1787
-      )
+    MilestonesImages.create(
+      page_id: page.to_i,
+      slug: slug,
+      fedora_pid: pid_1787
+    )
 
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs" id="#{page.to_i}">
