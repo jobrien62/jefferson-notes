@@ -471,39 +471,41 @@
 
         }
 
-        .pager {
-            clear:both;
-            margin:0;
-            padding:rhythm(1) 0;
-            @include clearfix;
+    }
 
-            a {
-                text-decoration:none;
+    // Milestone navigation.
+    .pager {
+        clear:both;
+        margin:0;
+        padding:rhythm(1) 0;
+        @include clearfix;
+
+        a {
+            text-decoration:none;
+        }
+
+        .next,
+        .previous {
+            float:left;
+            clear:left;
+            max-width: 45%;
+            &:before {
+                display:block;
+                color: #999;
+                margin:0;
+                content: "Previous";
+                @include adjust-font-size-to(12px);
+                font-style:italic;
             }
+        }
 
-            .next,
-            .previous {
-                float:left;
-                clear:left;
-                max-width: 45%;
-                &:before {
-                    display:block;
-                    color: #999;
-                    margin:0;
-                    content: "Previous";
-                    @include adjust-font-size-to(12px);
-                    font-style:italic;
-                }
-            }
+        .next {
+            float:right;
+            text-align:right;
+            clear:right;
 
-            .next {
-                float:right;
-                text-align:right;
-                clear:right;
-
-                &:before {
-                    content: "Next";
-                }
+            &:before {
+                content: "Next";
             }
         }
     }
@@ -545,6 +547,7 @@
         }
     }
 
+    // Search Results
     .search_result {
         padding: rhythm(1) 0;
         @include clearfix;
@@ -565,6 +568,10 @@
             }
 
         }
+    }
+
+    .pagination {
+        text-align:center;
     }
 
 }
