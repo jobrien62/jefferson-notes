@@ -582,6 +582,9 @@
 
     .pagination {
         text-align:center;
+        .disabled {
+            display:none;
+        }
     }
 
     .thumbnails {
