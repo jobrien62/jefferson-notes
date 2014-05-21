@@ -59,6 +59,15 @@
         padding-bottom: rhythm(2,36px);
       }
 
+      .results .search_result & {
+        border:none;
+        padding-bottom:0;
+      @include adjust-font-size-to(24px);
+      @include adjust-leading-to(1, 24px);
+      margin:0;
+
+      }
+
     }
 
     h2 {
@@ -164,8 +173,14 @@
     em,i {
         font-style:italic;
     }
+
     strong,b {
         font-weight:bold;
+    }
+
+    mark {
+        background: #fff990;
+        padding: 0.15em 0.25em;
     }
 
     .addEditorial {
@@ -323,6 +338,7 @@
 
     main {
         padding-top: rhythm(2);
+        padding-bottom: rhythm(2);
         @include pad(1,1);
 
         .map & {
@@ -493,28 +509,14 @@
         }
     }
 
-    .home main nav ul {
-        list-style:none;
-        margin-left:0;
-        padding-left:0;
-        @include adjust-font-size-to(12px);
-        @include adjust-leading-to(1,12px);
-        text-align:center;
+    .search_result {
+        padding: rhythm(1) 0;
 
-        li {
-            display:inline-block;
-            & + li:before {
-                content:" · ";
-                color: rgba(white, 0.25);
-                margin: 0 0.5em;
-            }
-        }
-
-        a {
-            color: #fff;
-            text-decoration:none;
+        & + .search_result {
+            border-top: 1px dotted #ccc;
         }
     }
+
 }
 
 @media print {
