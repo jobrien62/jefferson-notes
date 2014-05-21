@@ -578,6 +578,18 @@
         text-align:center;
     }
 
+    .thumbnails {
+        overflow:hidden;
+        .thumbnail {
+            @include gallery(4 of 16);
+        }
+
+        @media (min-width:700px) {
+        .thumbnail {
+            @include gallery(3 of 18);
+        }
+    }
+    }
 }
 
 @media print {
