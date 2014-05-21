@@ -36,7 +36,6 @@ namespace :import do
     @csv.each do |row|
       if( row[page_field] == page )
         pid = "uva-lib:#{row[pid_field]}"
-        puts pid
       end
       #puts row["1787_page"].class
     end
