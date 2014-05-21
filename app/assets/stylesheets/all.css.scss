@@ -319,6 +319,11 @@
     main {
         padding-top: rhythm(2);
         @include pad(1,1);
+
+        .map & {
+            padding:0 !important;
+        }
+
         background: #fff;
         background: rgba(white, 0.875);
 
