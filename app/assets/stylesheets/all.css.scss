@@ -395,10 +395,18 @@
                 @include pad(0,4);
 
 
+                .marginNote {
+                    @extend h4;
+                    font-style:italic;
+                    color: #999;
+                    margin-top: rhythm(1);
+                }
+
                 .thumbs {
                   margin-top: rhythm(1);
                   border-top: 1px dotted #ccc;
                   border-color: rgba(black, 0.15);
+                  padding-top:rhythm(1);
 
                   &:first-of-type {
                       margin-top:0;
@@ -439,26 +447,17 @@
             /*@include bleed;*/
 
             .milestone {
+                position:relative;
                @include pad(4,4);
 
               .marginNote {
-                margin:0;
-                margin-left: -(span(4 of 10 wide));
-                margin-top:0;
-                padding-top:0;
-                color: #999;
-                font-style:italic;
-                @include span(3 of 10);
-                @include adjust-font-size-to(14px);
-                @include adjust-leading-to(1,14px);
-                margin-top: -(rhythm(2, 14px));
+                  margin-top:0;
+                  position:absolute;
+                  left:0;
               }
 
             .thumbs {
               margin-right: -(span(3 of 10 wide));
-              border-top: 1px dotted #ccc;
-              border-color: rgba(black, 0.15);
-              padding-top:rhythm(1);
               clear:right;
 
               & + p {
