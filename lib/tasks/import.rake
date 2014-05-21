@@ -28,30 +28,21 @@ namespace :import do
   def find_pid(page, edition)
     @csv ||= @csv = CSV.read('./lib/assets/pages-correlate-no-sync.csv', headers: true)
 
-
     pid_field = "#{edition}_pid"
     page_field = "#{edition}_page"
 
-    pid = "uva-lib:"
+    pid = ""
 
     @csv.each do |row|
-      ap row[page_field]
-      if( row[page_field].to_i == page )
-        pid += row[pid_field]
+      if( row[page_field] == page )
+        pid = "uva-lib:#{row[pid_field]}"
+        puts pid
       end
       #puts row["1787_page"].class
     end
-    ap pid
 
     pid
 
-  end
-
-  desc "temp sketch for hash lookups"
-  task :lookup => :environment do
-    puts find_pid( 1, 1787 )
-    puts find_pid( 2, 1787 )
-    puts find_pid( 1, 1784 )
   end
 
   def parse_data
