@@ -1,25 +1,22 @@
-<section>
-  <header>
-    <h1>Results for "<span><%= params[:q] %></span>" </h1>
-    <p>
-      <%= pluralize(@response["response"]["numFound"], 'result') %>
-    </p>
-    <%= render("search_form") %>
+<% content_for :title do %>
+    <%= pluralize(@response["response"]["numFound"], 'Result') %> for <%= params[:q] %>
+<% end %>
 
-
+<header>
+    <p class="eyebrow">Search</p>
+      <h1>  
+          <%= pluralize(@response["response"]["numFound"], 'Result') %> for "<span><%= params[:q] %></span>"
+      </h1>
   </header>
-  <article id="search_results">
   <% @response["response"]["docs"].each do |doc| %>
+      <article class="search_result">
       <% link_path = doc["slug"] + "?highlight=" + params[:q] + "#" + doc["id"] %>
-      <header>
-        <h1><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></h1>
-      </header>
+      <h1><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></h1>
       <%# TODO clean this up!!! %>
       <p><%= highlight(truncate(doc["section"].first, length: 250), params[:q]) %></p>
-  <% end %>
   </article>
+  <% end %>
 
-  <nav>
+  <nav class="pagination">
     <%= will_paginate @response["response"]["docs"] %>
   </nav>
-</section>
