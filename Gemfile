@@ -30,7 +30,8 @@ gem 'jbuilder', '~> 1.2'
 
 ## Custom requirements for application
 
-gem "thin"
+#gem "thin"
+gem "unicorn"
 # page caching
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
