@@ -202,10 +202,15 @@
         h1 {
             float:left;
             margin-left: 1em;
+            margin-right:1em;
         }
 
         nav {
-            float:right;
+            margin-right:1em;
+
+            @media (min-width:700px) {
+                float:right;
+            }
 
             form {
                 margin:0;
