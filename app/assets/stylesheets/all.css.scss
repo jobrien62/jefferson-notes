@@ -62,8 +62,8 @@
       .results .search_result & {
         border:none;
         padding-bottom:0;
-      @include adjust-font-size-to(24px);
-      @include adjust-leading-to(1, 24px);
+      @include adjust-font-size-to(20px);
+      @include adjust-leading-to(1.25, 20px);
       margin:0;
 
       }
@@ -181,6 +181,20 @@
     mark {
         background: #fff990;
         padding: 0.15em 0.25em;
+    }
+
+    table {
+        padding:0;
+        margin: rhythm(1, 12px) 0;
+        @include adjust-font-size-to(12px);
+        width:100%;
+        border-collapse: collapse;
+        border:1px solid #ccc;
+
+        td {
+            padding: .25em .5em;
+            border-bottom:1px solid #ccc;
+        }
     }
 
     .addEditorial {
@@ -359,35 +373,37 @@
         }
 
         .milestones & {
-         .milestone {
-            @include pad(0,4);
+            .milestone {
+                @include pad(0,4);
+
+
+                .thumbs {
+                  margin-top: rhythm(1);
+                  border-top: 1px dotted #ccc;
+                  border-color: rgba(black, 0.15);
+
+                  &:first-of-type {
+                      margin-top:0;
+                      border-top:none;
+                  }
+
+                  figure {
+                      display:inline-block;
+                      float:left;
+                      width: 48%;
+                      & + figure {
+                          margin:0;
+                          float:right;
+                      }
+                  }
+                }
             }
-          .thumbs {
-              margin-top: rhythm(1);
-              margin-right: -(span(3 of 10 wide));
-              border-top: 1px dotted #ccc;
-              border-color: rgba(black, 0.15);
-              clear:right;
-              &:first-of-type {
-                  margin-top:0;
-                  border-top:none;
-              }
-
-              a {
-                  float:right;
-                  clear:right;
-                  display:block;
-                  margin: rhythm(1) 0;
-              }
-
-           }
-
-
         }
 
         @media (min-width:700px) {
 
-        .static_pages & {
+        .static_pages &,
+        .results & {
             @include pad(2,2);
         }
 
@@ -420,19 +436,23 @@
                 margin-top: -(rhythm(2, 14px));
               }
 
-              table {
-                  padding:0;
-                  margin: rhythm(1, 12px) 0;
-                  @include adjust-font-size-to(12px);
-                  width:100%;
-                  border-collapse: collapse;
-                  border:1px solid #ccc;
+            .thumbs {
+              margin-right: -(span(3 of 10 wide));
+              border-top: 1px dotted #ccc;
+              border-color: rgba(black, 0.15);
+              clear:right;
 
-                  td {
-                      padding: .25em .5em;
-                      border-bottom:1px solid #ccc;
-                  }
+              figure {
+                  display:inline-block;
+                  float:right;
+                  clear:right;
+                  width: auto;
+                  margin: rhythm(1) 0 rhythm(1) rhythm(1);
+                  @include adjust-font-size-to(14px);
               }
+
+           }
+
              }
         }
 
@@ -440,7 +460,8 @@
 
         @media (min-width: 960px) {
 
-            .static_pages & {
+            .static_pages &,
+            .results & {
                 @include pad(3,3);
             }
 
@@ -450,24 +471,39 @@
 
         }
 
-        .thumbnail {
-            p {
-                margin:0;
-                @include adjust-font-size-to(14px);
-                @include adjust-leading-to(1, 14px);
-                color: #999;
+        .pager {
+            clear:both;
+            margin:0;
+            padding:rhythm(1) 0;
+            @include clearfix;
+
+            a {
+                text-decoration:none;
             }
 
-        }
+            .next,
+            .previous {
+                float:left;
+                clear:left;
+                max-width: 45%;
+                &:before {
+                    display:block;
+                    color: #999;
+                    margin:0;
+                    content: "Previous";
+                    @include adjust-font-size-to(12px);
+                    font-style:italic;
+                }
+            }
 
-        .pagination {
-            clear:both;
-            @include adjust-leading-to(2);
-            margin:0;
-            padding:0;
             .next {
                 float:right;
                 text-align:right;
+                clear:right;
+
+                &:before {
+                    content: "Next";
+                }
             }
         }
     }
@@ -511,9 +547,23 @@
 
     .search_result {
         padding: rhythm(1) 0;
+        @include clearfix;
 
         & + .search_result {
             border-top: 1px dotted #ccc;
+        }
+
+        @media (min-width: 700px) {
+
+            h1 {
+                @include span(4 of 16);
+            }
+
+            p {
+                @include span(last 12 of 16);
+                margin:0;
+            }
+
         }
     }
 
