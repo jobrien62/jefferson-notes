@@ -142,6 +142,10 @@
         @include rhythm(1);
     }
 
+    p:empty {
+        margin:0;
+    }
+
     ul {
         list-style:disc;
     }
@@ -448,28 +452,28 @@
 
             .milestone {
                 position:relative;
-               @include pad(4,4);
+               @include pad(4 of 16);
 
               .marginNote {
-                  margin-top:0;
                   position:absolute;
                   left:0;
+                  width: span(3 of 16);
+                  text-align:right;
+                  & + p {
+                      margin-top: rhythm(1);
+                  }
               }
 
             .thumbs {
-              margin-right: -(span(3 of 10 wide));
+              margin-right: -(span(3 of 8 widest));
+              padding-top:0;
               clear:right;
-
-              & + p {
-                  margin-top:0;
-              }
-
               figure {
                   display:inline-block;
                   float:right;
                   clear:right;
                   width: auto;
-                  margin: 0 rhythm(1) rhythm(1);
+                  margin: rhythm(1) 0 0;
                   @include adjust-font-size-to(14px);
               }
 
