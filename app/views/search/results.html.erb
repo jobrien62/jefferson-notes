@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    <%= pluralize(@response["response"]["numFound"], 'Result') %> for <%= params[:q] %>
+<% end %>
+
 <header>
     <p class="eyebrow">Search</p>
       <h1>  
