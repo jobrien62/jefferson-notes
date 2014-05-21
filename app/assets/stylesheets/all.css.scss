@@ -29,7 +29,7 @@
     }
 
     body {
-        @include container(show);
+        @include container($grid);
         font-family: 'Libre Baskerville', Georgia, serif;
     }
 
