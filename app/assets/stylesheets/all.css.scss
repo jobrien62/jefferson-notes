@@ -440,7 +440,12 @@
               margin-right: -(span(3 of 10 wide));
               border-top: 1px dotted #ccc;
               border-color: rgba(black, 0.15);
+              padding-top:rhythm(1);
               clear:right;
+
+              & + p {
+                  margin-top:0;
+              }
 
               figure {
                   display:inline-block;
