@@ -356,7 +356,13 @@
         @include pad(1,1);
 
         .map & {
-            padding:0 !important;
+            padding: rhythm(1) 0 0 !important;
+
+            h1 {
+                border:none;
+                padding:0;
+                @include pad(1,1);
+            }
         }
 
         background: #fff;
