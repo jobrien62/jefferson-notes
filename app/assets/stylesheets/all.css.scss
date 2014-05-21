@@ -515,11 +515,10 @@
         }
     }
 
-    .page_number {
+    .pagenum {
         @include adjust-font-size-to(14px);
         @include adjust-leading-to(1,14px);
-        color: #999;
-        font-style:italic;
+        color: #888;
     }
 
     .read-notes {
