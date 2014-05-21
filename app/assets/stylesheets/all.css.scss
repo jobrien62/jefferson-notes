@@ -219,7 +219,7 @@
             li {
                 display: inline-block;
                 cursor: pointer;
- 
+
                 &:hover,
                 &:focus {
                     background: #292929;
@@ -273,7 +273,7 @@
         padding: 1em;
 
         @media (min-width: 500px) {
-            padding:2em;            
+            padding:2em;
             @include columns(2);
             -moz-column-rule: 1px solid rgba(white, 0.1);
             -moz-column-gap: 60px;
