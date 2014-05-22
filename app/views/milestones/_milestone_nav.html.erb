@@ -1,8 +1,8 @@
 <% counter = 0 %>
 <ul class="milestones">
     <% @milestones.each do |milestone| %>
-      <% title = "Query #{RomanNumerals.to_roman(counter)}." unless counter == 0%>
-    <% counter += 1 %>
+      <% title = "Query #{RomanNumerals.to_roman(counter)}." unless counter == 0 || counter > 23 %>
+      <% counter += 1 %>
 
     <li><%= link_to(content_tag(:span, title) + content_tag(:span, milestone.title), milestone)%></li>
 
