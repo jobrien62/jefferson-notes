@@ -317,6 +317,8 @@
         list-style:none;
         padding: 1em;
 
+        #globalnav & { z-index: 15; }
+
         @media (min-width: 500px) {
             padding:2em;
             @include columns(2);
