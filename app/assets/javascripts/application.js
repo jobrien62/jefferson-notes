@@ -19,4 +19,5 @@
 //= require retina.js/src/retina
 //= require jquery.lazyload/jquery.lazyload
 //= require openlayers3/build/ol.js
+//= require jquery-accessibleMegaMenu/js/jquery-accessibleMegaMenu
 //= require_tree .
