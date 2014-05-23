@@ -1,0 +1,13 @@
+{
+  "name": "jquery-accessibleMegaMenu",
+  "homepage": "https://github.com/adobe-accessibility/Accessible-Mega-Menu",
+  "_release": "bd20b1f75a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bd20b1f75a18320c4ea513853f7d8dff28d36170"
+  },
+  "_source": "https://github.com/adobe-accessibility/Accessible-Mega-Menu.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/adobe-accessibility/Accessible-Mega-Menu.git"
+}
