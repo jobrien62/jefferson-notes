@@ -2,6 +2,7 @@ require 'nokogiri'
 require "awesome_print"
 require "csv"
 require "rsolr"
+require "titleize"
 
 namespace :import do
 
@@ -57,7 +58,7 @@ namespace :import do
 
     doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
-      title = slug.split('-').join(' ').titleize
+      title = slug.split('-').join(' ').titlecase
 
       query.xpath('//p|div|table').each do |payload|
         content = payload.text
@@ -143,7 +144,7 @@ namespace :import do
     #doc.xpath('//div[@class="query"]').each do |query|
     doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
-      title = slug.split('-').join(' ').titleize
+      title = slug.split('-').join(' ').titlecase
       #content = query.to_html()
       order += 1
 
