@@ -129,7 +129,7 @@ namespace :import do
   end
 
   def parse_page(page_element)
-    page_element.attribute('id').value.scan(/\d+/).join
+    page_element.attribute('id').to_s.gsub("page-", '')
   end
 
 
