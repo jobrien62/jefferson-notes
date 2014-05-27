@@ -187,38 +187,6 @@ namespace :import do
     ap doc.search("//table").size
   end
 
-  #desc "Prepare queries for database"
-  #task :queries => :environment do
-  #source = File.open('./lib/assets/queries.html')
-  #doc = Nokogiri::HTML(source)
-
-  #order = 0
-
-  #doc.css('div[@class="query"]').each do |query|
-  #order += 1
-
-  #slug = query.attribute('id').value
-  #title = slug.split('-').join(' ').titleize
-  #content = query.to_html(encoding: 'US-ASCII')
-
-  #query.css('[@class="pagenum"]').each do |page|
-  #page = page.attribute('id').value
-
-  #pids = mapPageToPids(page)
-  #end
-
-  ##Milestone.create(
-  ##order: order,
-  ##content: content,
-  ##title: title,
-  ##slug: slug
-  ##)
-
-  #ap "Created #{title}"
-  #end
-
-  #end
-
   def construct_filename(prefix, file)
     "#{prefix}#{file}".gsub('.tif', '.jpg')
   end
