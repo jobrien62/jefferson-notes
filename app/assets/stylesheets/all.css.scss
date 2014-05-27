@@ -199,11 +199,19 @@
         padding: 0.15em 0.25em;
     }
 
+    .table {
+        overflow-y: scroll;
+        max-width: 100%;
+        border: 2px solid #ccc;
+        padding: 0 5px;
+        margin-top: rhythm(1);
+    }
+
     table {
         padding:0;
         margin: rhythm(1, 12px) 0;
         @include adjust-font-size-to(12px);
-        width:100%;
+        max-width:98%;
         border-collapse: collapse;
         border:1px solid #ccc;
 
