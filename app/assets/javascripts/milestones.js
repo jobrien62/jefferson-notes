@@ -13,6 +13,22 @@ $(document).ready(function() {
     }
   );
 
+  $('.note').click(function() {
+    console.log('note', $(this).next('.authorNote').html());
+  });
+
+  $('.note').popover(
+    {
+      title: 'Footnote',
+      placement: 'auto',
+      content: function() {
+        return $(this).next('.authorNote').html();
+      },
+      container: 'body',
+      html: true
+    }
+  );
+
   $('img.lazy').lazyload({
     effect: "fadeIn",
     failure_limit: 10

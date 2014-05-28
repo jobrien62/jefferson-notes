@@ -221,7 +221,7 @@
         }
     }
 
-    .addEditorial {
+    .addEditorial, .authorNote {
         @extend %hidden;
     }
 
@@ -229,7 +229,7 @@
         @extend %visuallyhidden;
     }
 
-    .editorialTrigger {
+    .editorialTrigger, .note {
         cursor: pointer;
         color: darken(#38c, 20%);
     }
