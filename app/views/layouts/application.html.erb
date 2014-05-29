@@ -4,7 +4,7 @@
   <meta charset="UTF-9">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) + " : ": "" %>On Virginia</title>
+  <title><%= content_for?(:title) ? yield(:title) + " : ": "" %>Notes on the State of Virginia</title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Notes on the State of Virginia" %>">
   <link href='//fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
   <%= content_for?(:header) ? yield(:header) : "" %>
@@ -16,7 +16,7 @@
 <body class="<%= body_class %>">
 <a href="#main" id="skip-link">Skip to main content on this page</a>
 <header role="banner" id="banner">
-  <h1><a href="/">On Virginia</a></h1>
+  <h1><a href="/">Notes on the State of Virginia</a></h1>
     <%= render "layouts/navigation" %>
 </header>
 <main role="main" id="main">
