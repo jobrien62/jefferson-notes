@@ -1,5 +1,9 @@
 "use strict"
 $(document).ready(function() {
+
+
+  $('.authorNote').hide();
+
   $('.editorialTrigger').popover(
     {
       title: 'Editorial Note',
@@ -14,20 +18,9 @@ $(document).ready(function() {
   );
 
   $('.note').click(function() {
-    console.log('note', $(this).next('.authorNote').html());
+    var footnote = $(this).next('.authorNote');
+    footnote.toggle('slow', 'linear');
   });
-
-  $('.note').popover(
-    {
-      title: 'Footnote',
-      placement: 'auto',
-      content: function() {
-        return $(this).next('.authorNote').html();
-      },
-      container: 'body',
-      html: true
-    }
-  );
 
   $('img.lazy').lazyload({
     effect: "fadeIn",

@@ -221,8 +221,16 @@
         }
     }
 
-    .addEditorial, .authorNote {
+    .addEditorial {
         @extend %hidden;
+    }
+
+    /*author note (footnotes from the book)*/
+    .authorNote {
+      @include adjust-font-size-to(12px);
+      margin: rhythm(1, 12px, 1);
+      padding: 25px;
+      background: #fff;
     }
 
     #skip-link {
