@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'nokogiri'
 require "awesome_print"
 require "csv"
@@ -264,6 +266,14 @@ namespace :import do
       ])
 
     end
+  end
+
+
+  desc 'Resets on Heroku'
+  task :heroku_reset => :environment do
+    sh "heroku pg:reset DATABASE --confirm jefferson-notes"
+    `heroku run rake db:migrate`
+    `heroku run rake import:milestones`
   end
 
 end
