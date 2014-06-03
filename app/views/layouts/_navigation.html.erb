@@ -7,10 +7,11 @@
     <li><%= link_to 'Credits', credits_path %></li>
     <li><%= link_to 'Map', map_path %></li>
     <li class="search">
-        <form id="search" action="/search/results" method="get" accept-charset="utf-8">
-          <input type="text" name="q" id="search-input" class="searchfield" placeholder="Search..." />
+      <form id="search" role="search" action="/search/results" method="get" accept-charset="utf-8">
+        <label for="q" class="hidden">Keywords</label>
+        <input type="search" name="q" id="search-input" class="searchfield" placeholder="Search..." />
         <input type="submit" name="search-btn" id="search-btn" value="" />
-        </form>
+      </form>
     </li>
   </ul>
 </nav>
