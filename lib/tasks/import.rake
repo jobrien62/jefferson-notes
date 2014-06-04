@@ -109,6 +109,8 @@ namespace :import do
       fedora_pid: pid_1787
     )
 
+
+
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs" id="#{page.to_i}">
        <a href="#{full_1787}">
@@ -117,13 +119,18 @@ namespace :import do
           <figcaption>1787 Edition</figcaption>
         </figure>
        </a>
-       <a href="#{full_1784}">
+    #{
+    unless pid_1784.empty?
+      '<a href="' + full_1784.to_s + '">
         <figure>
-          <img alt='1784 Edition' class="thumb lazy" width="89" height="125" data-original='#{thumb_1784}' />
+          <img alt=''1784 Edition'' class="thumb lazy" width="89" height="125" data-original=' + thumb_1784 +' />
           <figcaption>1784 Edition</figcaption>
         </figure>
-       </a>
+       </a>'
+    end
+       }
       </div>
+
     EOHTML
 
     fragment
