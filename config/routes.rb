@@ -13,16 +13,7 @@ JeffersonNotes::Application.routes.draw do
   get "reading" => "static_pages#reading"
   get "images" => "images_milestones#index"
 
-  #get "milestones" => "milestones#index"
-  #get "milestones/show/:id" => "milestones#show"
-
   resources :milestones
-
-  resources :pages
-  #
-  resources :witnesses do
-    resources :pages
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
