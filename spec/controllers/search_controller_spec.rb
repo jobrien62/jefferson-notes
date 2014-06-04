@@ -4,15 +4,15 @@ describe SearchController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index'
-      response.should be_success
+      get :index
+      expect(response).to render_template('index')
     end
   end
 
   describe "GET 'results'" do
     it "returns http success" do
-      get 'results'
-      response.should be_success
+      get :results
+      expect(response).to render_template('results')
     end
   end
 
