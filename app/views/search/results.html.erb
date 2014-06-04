@@ -12,7 +12,6 @@
   <article class="search_result">
   <% link_path = doc["slug"] + "?highlight=" + params[:q] + "#" + doc["id"] %>
   <h1><a href="/milestones/<%= link_path %>"><%= doc['title'].first %></a></h1>
-  <%# TODO clean this up!!! %>
   <p><%= highlight(truncate(doc["section"].first, length: 250), params[:q]) %></p>
 </article>
   <% end %>
