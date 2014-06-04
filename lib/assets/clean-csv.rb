@@ -29,14 +29,13 @@ CSV.foreach('./pages-correlate.csv', :headers => true) do |row|
   }
 EOS
 
-  
   #puts page_number unless ( page_number.nil? or page_number == 'tip-in')
   #puts Faker::Lorem.paragraph
   #row.each do |column|
-    #puts column.to_hash
+  #puts column.to_hash
   #end
 end
 
-  seed_string += "])"
-  puts seed_string
+seed_string += "])"
+puts seed_string
 

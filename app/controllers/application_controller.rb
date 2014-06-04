@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_milestones
-  
+
   def set_milestones
     @milestones = Milestone.all
   end
