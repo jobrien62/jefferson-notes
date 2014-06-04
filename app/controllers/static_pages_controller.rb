@@ -3,9 +3,6 @@ class StaticPagesController < ApplicationController
     @milestones = Milestone.all
   end
 
-  def help
-  end
-
   def map
   end
 end
