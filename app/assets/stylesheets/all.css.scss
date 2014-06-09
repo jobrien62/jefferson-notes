@@ -56,6 +56,7 @@
       @include adjust-leading-to(1.5, 28px);
       @include leader(1,28px);
       @include trailer(2,28px);
+
       main &:first-of-type {
         border-bottom: 1px dotted #ccc;
         padding-bottom: rhythm(2,28px);
@@ -229,9 +230,11 @@
     /*author note (footnotes from the book)*/
     .authorNote {
       @include adjust-font-size-to(12px);
-      margin: rhythm(1, 12px, 1);
-      padding: 25px;
+      @include leader(1, 12px);
+      @include trailer(1, 12px);
+      padding: rhythm(1, 12px);
       background: #fff;
+      width: 100%;
     }
 
     /*top scroll*/
@@ -254,7 +257,13 @@
 
     .editorialTrigger, .note {
         cursor: pointer;
-        color: darken(#38c, 20%);
+        color: darken(#38d, 10%);
+        line-height:0;
+    }
+
+    .note {
+        @include adjust-font-size-to(20px);
+        line-height:0;
     }
 
     #banner {
@@ -404,17 +413,22 @@
         }
     }
 
+    #map {
+        height: 250px;
+    }
+
     main {
         padding-top: rhythm(2);
         padding-bottom: rhythm(2);
         @include pad(1,1);
 
         .map & {
-            padding: rhythm(1) 0 0 !important;
+            padding: rhythm(1) !important;
 
             h1 {
                 border:none;
                 padding:0;
+                margin:0;
                 @include pad(1,1);
             }
         }

@@ -42,7 +42,7 @@ $width: 500px;
   .searchfield {
     float: right;
     width: 120px;
-    padding: 0 10px;
+    padding: 3px 10px;
     padding-right: 45px;
     @include transition(all 0.25s linear);
   }
@@ -58,8 +58,8 @@ $width: 500px;
     position: absolute;
     height: 12px;
     width: 12px;
-    top: 4px;
-    right: 15px;
+    top: 6px;
+    right: 6px;
     border: 0;
     cursor: pointer;
     zoom: 1;
