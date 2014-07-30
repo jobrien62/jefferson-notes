@@ -589,9 +589,10 @@
     }
 
     .pagenum {
-        @include adjust-font-size-to(14px);
-        @include adjust-leading-to(1,14px);
-        color: #888;
+      display: none;
+        /*@include adjust-font-size-to(14px);*/
+        /*@include adjust-leading-to(1,14px);*/
+        /*color: #888;*/
     }
 
     .read-notes {
