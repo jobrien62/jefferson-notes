@@ -268,7 +268,7 @@
 
     #banner {
         background-color: rgba(black, 0.5);
-        border-bottom:1px solid rgba(white, 0.25);
+        border-bottom:1px solid rgba(white, 0.125);
         color: white;
         color: rgba(white, 0.9);
         @extend %clearfix;
@@ -666,6 +666,48 @@
         }
     }
     }
+
+    footer {
+        padding: rhythm(1) span(1 of 18);
+        background-color: rgba(black, 0.5);
+        border-top:1px solid rgba(white, 0.125);
+
+        p {
+            @include adjust-font-size-to(12px);
+            @include adjust-leading-to(1,12px);
+            margin-bottom: rhythm(1, 12px);
+            color: #e0e0e0;
+            color: rgba(white, 0.8);
+        }
+
+        a {
+
+            &:link,
+            &:visited {
+                color: #f0f0f0;
+                color: rgba(white, 0.8);
+
+                img {
+                    opacity: 0.8;
+                }
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: #f0f0f0;
+                color: rgba(white, 0.8);
+
+                img {
+                    opacity: 1;
+                }
+
+            }
+        }
+
+        
+    }
+
 }
 
 @media print {
