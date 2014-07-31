@@ -18,13 +18,16 @@
 
     html {
         background-color: #f0f0f0;
-        background-image: url(image-path("jefferson-flipped.jpg"));
+        @include background-image(
+            linear-gradient(top, rgba(black, .4), rgba(black, .4)),
+            url(image-path("jefferson-flipped.jpg"))
+        );
         background-position:bottom right;
         @include background-size(cover);
         background-attachment:fixed;
         background-repeat:no-repeat;
         @media (max-width:400px) {
-        background-position: -500px bottom;
+        background-position: bottom right, -500px bottom;
         }
 
     }
@@ -459,7 +462,7 @@
         background: rgba(white, 0.875);
 
         .home & {
-            background: rgba(black, 0.4);
+            background: none;
             color: #fff;
 
             .milestones{
@@ -692,8 +695,6 @@
 
     footer {
         padding: rhythm(1) span(1 of 18);
-        background-color: rgba(black, 0.5);
-        border-top:1px solid rgba(white, 0.125);
 
         p {
             @include adjust-font-size-to(12px);
@@ -728,7 +729,7 @@
             }
         }
 
-        
+
     }
 
 }
