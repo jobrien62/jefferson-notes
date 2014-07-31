@@ -272,6 +272,24 @@
         line-height:0;
     }
 
+    div.tip-in {
+        background: #fff;
+        background: rgba(white, 0.9);
+        @include adjust-font-size-to(14px);
+        padding: rhythm(1, 14px) rhythm(1, 14px);
+        margin-top: rhythm(1,14px);
+
+        &:before {
+            content: "Tip-in";
+            display:block;
+            font-style:italic;
+            @include adjust-font-size-to(12px);
+            color: #999;
+            text-align:right;
+        }
+
+    }
+
     #banner {
         background-color: rgba(black, 0.5);
         border-bottom:1px solid rgba(white, 0.125);
@@ -463,7 +481,7 @@
                 }
 
                 .thumbs {
-                  margin-top: rhythm(1);
+                  margin: rhythm(1) 0;
                   border-top: 1px dotted #ccc;
                   border-color: rgba(black, 0.15);
                   padding-top:rhythm(1);
