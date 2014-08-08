@@ -18,13 +18,16 @@
 
     html {
         background-color: #f0f0f0;
-        background-image: url(image-path("jefferson-flipped.jpg"));
+        @include background-image(
+            linear-gradient(top, rgba(black, .4), rgba(black, .4)),
+            url(image-path("jefferson-flipped.jpg"))
+        );
         background-position:bottom right;
         @include background-size(cover);
         background-attachment:fixed;
         background-repeat:no-repeat;
         @media (max-width:400px) {
-        background-position: -500px bottom;
+        background-position: bottom right, -500px bottom;
         }
 
     }
@@ -60,6 +63,12 @@
       main &:first-of-type {
         border-bottom: 1px dotted #ccc;
         padding-bottom: rhythm(2,28px);
+      }
+
+      .map main & {
+        padding-bottom: rhythm(1,28px) !important;
+        border:none;
+        margin:0;
       }
 
       @media (min-width:480px) {
@@ -136,7 +145,7 @@
 
     #{headings(3,6)} {
        + p {
-        margin-top:0;
+            margin-top:0;
       }
     }
 
@@ -264,6 +273,24 @@
     .note {
         @include adjust-font-size-to(20px);
         line-height:0;
+    }
+
+    div.tip-in {
+        background: #fff;
+        background: rgba(white, 0.9);
+        @include adjust-font-size-to(14px);
+        padding: rhythm(1, 14px) rhythm(1, 14px);
+        margin-top: rhythm(1,14px);
+
+        &:before {
+            content: "Tip-in";
+            display:block;
+            font-style:italic;
+            @include adjust-font-size-to(12px);
+            color: #999;
+            text-align:right;
+        }
+
     }
 
     #banner {
@@ -414,7 +441,7 @@
     }
 
     #map {
-        height: 250px;
+        height: 700px;
     }
 
     main {
@@ -423,13 +450,11 @@
         @include pad(1,1);
 
         .map & {
-            padding: rhythm(1) !important;
+            padding: rhythm(1) 0 0 !important;
 
             h1 {
-                border:none;
-                padding:0;
-                margin:0;
-                @include pad(1,1);
+                padding-left: rhythm(1, 28px);
+                padding-right: rhythm(1, 28px);
             }
         }
 
@@ -437,7 +462,7 @@
         background: rgba(white, 0.875);
 
         .home & {
-            background: rgba(black, 0.4);
+            background: none;
             color: #fff;
 
             .milestones{
@@ -459,7 +484,7 @@
                 }
 
                 .thumbs {
-                  margin-top: rhythm(1);
+                  margin: rhythm(1) 0;
                   border-top: 1px dotted #ccc;
                   border-color: rgba(black, 0.15);
                   padding-top:rhythm(1);
@@ -670,8 +695,6 @@
 
     footer {
         padding: rhythm(1) span(1 of 18);
-        background-color: rgba(black, 0.5);
-        border-top:1px solid rgba(white, 0.125);
 
         p {
             @include adjust-font-size-to(12px);
@@ -706,7 +729,7 @@
             }
         }
 
-        
+
     }
 
 }
