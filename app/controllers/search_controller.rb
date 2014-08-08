@@ -1,8 +1,10 @@
 require 'rsolr'
 
 class SearchController < ApplicationController
-  def index
 
+  caches_action :index
+
+  def index
   end
 
   def results

@@ -2,13 +2,13 @@ class MilestonesController < ApplicationController
 
   before_action :set_milestone, only: [:show]
   before_action :get_milestones
+  caches_action :index
+  caches_action :show
 
   def index
-    #@milestones = Milestone.all
   end
 
   def show
-     #@milestones = Milestone.all
   end
 
   private
