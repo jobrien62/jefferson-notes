@@ -3,7 +3,6 @@ bundler_args: "--without production"
 rvm:
 - 2.1.2
 env:
-- DB=sqlite
 - DB=postgresql
 script:
 - RAILS_ENV=test bundle exec rake --trace db:migrate test
