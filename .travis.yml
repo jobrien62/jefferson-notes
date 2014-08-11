@@ -1,14 +1,21 @@
 language: ruby
+bundler_args: "--without production"
 rvm:
   - 2.1.2
 env:
   - DB=sqlite
-  - DB=postgresql
+- DB=postgresql
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
-  - bundle exec rspec spec
+- bundle exec rspec spec
 before_script:
   - psql -c 'create database notes_test' -U postgres
-  - curl https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.5.0 SOLR_CONFS="./spec/configs/schema.xml ./spec/configs/solrconfig.xml" bash
 notifications:
-  irc: "irc.freenode.org#slab"
+  irc: irc.freenode.org#slab
+deploy:
+  provider: heroku
+  api_key:
+    secure: H6xqyTIghwHeMmjsNC+zXRq4VZ6BY/xWU8yFT3oqLuWNdX4H95XwCxTudLaTbnyxRfSkBNWccb73J4QQhC+3ZN1kzv8fCbz12oMS2h32LU056IiOdWnu2qlOR6Maf/ncxqmOUyJekGUesaMN1qWmPZ69flCNzvp2QL696QWgxL8=
+  app: jefferson-notes
+  on:
+    repo: waynegraham/jefferson-notes
