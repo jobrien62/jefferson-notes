@@ -36,6 +36,11 @@ gem "unicorn"
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 
+# rails_admin
+gem 'rails_admin', '~> 0.6.3'
+gem 'devise', '~> 3.3.0'
+gem 'bootstrap-wysihtml5-rails', '0.3.1.24'
+
 # Processing the html text
 # This is really just for the inital parsing of the data in to the data structure
 gem "nokogiri", "~> 1.6.0"
