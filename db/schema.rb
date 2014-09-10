@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909205744) do
+ActiveRecord::Schema.define(version: 20140910130536) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -26,16 +26,6 @@ ActiveRecord::Schema.define(version: 20140909205744) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "images", force: true do |t|
-    t.string   "filename"
-    t.string   "pid"
-    t.integer  "witness_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "images", ["witness_id"], name: "index_images_on_witness_id"
-
   create_table "milestones", force: true do |t|
     t.string   "title"
     t.string   "slug"
@@ -44,17 +34,6 @@ ActiveRecord::Schema.define(version: 20140909205744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "milestones_images", force: true do |t|
-    t.integer  "page_id"
-    t.string   "fedora_pid"
-    t.string   "slug"
-    t.integer  "milestones_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "milestones_images", ["milestones_id"], name: "index_milestones_images_on_milestones_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -73,5 +52,17 @@ ActiveRecord::Schema.define(version: 20140909205744) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

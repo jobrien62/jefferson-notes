@@ -9,7 +9,22 @@ RailsAdmin.config do |config|
     end
   end
 
- 
+  config.model 'User' do
+    navigation_icon 'icon-user'
+  end
+
+  config.model 'Milestone' do
+    navigation_icon 'icon-book'
+    list do
+      items_per_page 50
+      sort_by :id
+      field :id do
+        sort_reverse false
+      end
+      field :title
+      field :slug
+    end
+  end
 
   ### Popular gems integration
 
@@ -23,7 +38,7 @@ RailsAdmin.config do |config|
   #config.authorize_with :cancan
 
   ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
