@@ -19,7 +19,7 @@ namespace :import do
   end
 
   desc "Convenience wrapper for all the tasks"
-  task :all => [:docs, :images, :page_images]
+  task :all => [:milestones, :index]
 
   desc "Convenience wrapper for resetting the database"
   task :reset => ['db:reset', :milestones]
@@ -103,11 +103,11 @@ namespace :import do
 
     #ap "#{slug}, #{pid_1787}, #{page.to_i}"
 
-    MilestonesImages.create(
-      page_id: page.to_i,
-      slug: slug,
-      fedora_pid: pid_1787
-    )
+    #MilestonesImages.create(
+      #page_id: page.to_i,
+      #slug: slug,
+      #fedora_pid: pid_1787
+    #)
 
 
 

@@ -1,5 +1,7 @@
 JeffersonNotes::Application.routes.draw do
-  get "images_milestones/index"
+  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  #get "images_milestones/index"
   get "milestones/index"
   get "milestones/show"
 
