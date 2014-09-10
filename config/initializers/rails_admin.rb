@@ -24,6 +24,19 @@ RailsAdmin.config do |config|
       field :title
       field :slug
     end
+
+    edit do
+      field :title do
+        label "Title"
+        help "The text of the original query"
+      end
+
+      field :content, :wysihtml5 do
+        config_options('html' => true, 'font-styles' => false)
+      end
+    end
+
+
   end
 
   ### Popular gems integration
