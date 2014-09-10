@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20140910130536) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "images", force: true do |t|
+    t.string   "filename"
+    t.string   "pid"
+    t.integer  "witness_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["witness_id"], name: "index_images_on_witness_id"
+
   create_table "milestones", force: true do |t|
     t.string   "title"
     t.string   "slug"
@@ -34,6 +44,17 @@ ActiveRecord::Schema.define(version: 20140910130536) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "milestones_images", force: true do |t|
+    t.integer  "page_id"
+    t.string   "fedora_pid"
+    t.string   "slug"
+    t.integer  "milestones_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "milestones_images", ["milestones_id"], name: "index_milestones_images_on_milestones_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
