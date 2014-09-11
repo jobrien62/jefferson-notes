@@ -1,0 +1,52 @@
+.modal-header {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 21px;
+
+  .bootbox-close-button {
+    float: right;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-bottom-color: rgb(0, 0, 0);
+    border: none;
+    font-size: 21px;
+  }
+}
+
+.addDescription {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border-top: 1px solid rgb(229, 229, 229);
+}
+
+$brand-primary: #428bca !default;
+$link-color: $brand-primary !default;
+$link-hover-color: darken($link-color, 15%) !default;
+
+.btn-primary {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  margin: 0 5px;
+  display: inline;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: no-wrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &, &:hover, &:active {
+    background-color: #f7f7f9;
+  }
+
+}

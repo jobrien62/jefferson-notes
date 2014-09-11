@@ -19,6 +19,7 @@ $(document).ready(function() {
   });
 
   $('.authorNote').hide();
+  $('.modal-content').hide(); 
 
   $('.editorialTrigger').popover(
     {
@@ -32,6 +33,26 @@ $(document).ready(function() {
       html: true,
     }
   );
+
+  $('.transcription-trigger').click(function(event) {
+    event.preventDefault();
+
+    var content = $( this ).parent().next('.transcription-body').html();
+
+    bootbox.dialog({
+      title: "Marginalia",
+      message: content,
+      buttons: {
+        main: {
+          label: "Close",
+          className: "btn-primary",
+          callback: function() {
+            //
+          }
+        }
+      }
+    });
+  });
 
   $('.note').click(function() {
     var footnote = $(this).next('.authorNote');
