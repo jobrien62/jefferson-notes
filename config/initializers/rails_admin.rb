@@ -1,13 +1,13 @@
 RailsAdmin.config do |config|
 
   # see https://github.com/sferik/rails_admin/wiki/Wysihtml5
-  config.model Milestone do
-    edit do
-      field :content, :wysihtml5 do
-        config_options :html => true
-      end
-    end
-  end
+  #config.model Milestone do
+    #edit do
+      #field :content, :wysihtml5 do
+        #config_options :html => true
+      #end
+    #end
+  #end
 
   config.model 'User' do
     navigation_icon 'icon-user'
@@ -31,9 +31,14 @@ RailsAdmin.config do |config|
         help "The text of the original query"
       end
 
-      field :content, :wysihtml5 do
-        config_options('html' => true, 'font-styles' => false)
+      field :content do
+        label "Content"
+        help "HTML markup for the page"
       end
+
+      #field :content, :wysihtml5 do
+        #config_options('html' => true, 'font-styles' => false)
+      #end
     end
 
 
