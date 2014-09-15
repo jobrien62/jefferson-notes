@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 
-  caches_action :home, :map
+  caches_page :home, :map
 
   def home
     @milestones = Milestone.order(:id).all
