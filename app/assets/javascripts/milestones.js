@@ -69,7 +69,7 @@ $(document).ready(function() {
     html: true,
     title: 'Preview',
     content: function() {
-      var img = $( this ). data( 'original');
+      var img = $( this ).data( 'original' );
       var large_thumb = img.replace('getThumbnail', 'getScaled?maxWidth=&maxHeight=');
       var img = '<img id="large_thumb" src="' + large_thumb +'" />';
       return img;
