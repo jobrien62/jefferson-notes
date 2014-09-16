@@ -19,13 +19,12 @@ $(document).ready(function() {
   });
 
   $('.authorNote').hide();
-  $('.modal-content').hide(); 
+  $('.modal-content').hide();
 
   $('.editorialTrigger').popover(
     {
       title: 'Editorial Note',
       placement: 'auto',
-      //content:  $(this).next('.addEditorial').html(),
       content: function(){
         return $(this).next('.addEditorial').html();
       },
@@ -62,6 +61,21 @@ $(document).ready(function() {
   $('img.lazy').lazyload({
     effect: "fadeIn",
     failure_limit: 10
+  });
+
+  // TODO Remove before going live
+  $('img.lazy').popover({
+    trigger: 'hover',
+    html: true,
+    title: 'Preview',
+    content: function() {
+      var img = $( this ). data( 'original');
+      var large_thumb = img.replace('getThumbnail', 'getScaled?maxWidth=&maxHeight=');
+      var img = '<img id="large_thumb" src="' + large_thumb +'" />';
+      return img;
+    },
+    container: 'body',
+    placement: 'auto'
   });
 
   $('#globalnav').accessibleMegaMenu();
