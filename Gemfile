@@ -2,13 +2,16 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.0.0'
 
 # Use SCSS for stylesheets
-gem "sass", "~> 3.2.14"
+gem "sass", "~> 3.3.0"
 gem 'sass-rails', '~> 4.0.0'
-gem "compass-rails", "~> 1.1.2"
-gem "susy", "~> 2.0.0.alpha.4"
+gem "compass-rails", "~> 2.0.0"
+gem "susy", "~> 2.1.3"
+
+gem "sprockets", "2.11.0"
+
 gem "roman-numerals", "~> 0.3.0"
 
 # Use Uglifier as compressor for JavaScript assets
