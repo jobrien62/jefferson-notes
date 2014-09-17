@@ -6,6 +6,11 @@ require "csv"
 require "rsolr"
 require "titleize"
 
+
+HTMLFILE='./lib/assets/stockdale1787.final.html'
+#HTMLFILE='./lib/assets/queries.html'
+CSVFILE='./lib/assets/pages-correlate-no-sync.csv'
+
 namespace :import do
 
   FEDORA_PREFIX="http://fedoraproxy.lib.virginia.edu/fedora/objects"
@@ -29,7 +34,7 @@ namespace :import do
   end
 
   def find_pid(page, edition)
-    @csv ||= @csv = CSV.read('./lib/assets/pages-correlate-no-sync.csv', headers: true)
+    @csv ||= @csv = CSV.read(CSVFILE, headers: true)
 
     pid_field = "#{edition}_pid"
     page_field = "#{edition}_page"
@@ -48,7 +53,7 @@ namespace :import do
   end
 
   def parse_data
-    source = File.open('./lib/assets/queries.html')
+    source = File.open(HTMLFILE)
     Nokogiri::XML(source)
   end
 
@@ -145,9 +150,6 @@ namespace :import do
   desc "Generate Milestones"
   task :milestones => :environment do
     doc = parse_data
-    #csv = CSV.read './lib/assets/pages-correlate-no-sync.csv'
-    #csv_text = source = File.open("./lib/assets/pages-correlate-no-sync.csv")
-    #csv = CSV.parse(csv_text, :headers => true)
     order = 0
 
     #doc.xpath('//div[@class="query"]').each do |query|
@@ -184,14 +186,14 @@ namespace :import do
 
   desc "Report number of authorNotes"
   task :count_authornotes => :environment do
-    source = File.open('./lib/assets/queries.html')
+    source = File.open(HTMLFILE)
     doc = Nokogiri::HTML(source)
     ap doc.search("//span[@class='authorNote']").size
   end
 
   desc "Report number of paragraphs"
   task :count_paragraphs => :environment do
-    source = File.open('./lib/assets/queries.html')
+    source = File.open(HTMLFILE)
     doc = Nokogiri::HTML(source)
     ap doc.search("//table").size
   end
@@ -202,7 +204,7 @@ namespace :import do
 
   desc "Contruct Page Associations"
   task :page_images => :environment do
-    source = File.open("./lib/assets/pages-correlate.csv")
+    source = File.open(CSVFILE)
 
     ap "Associating Pages and pids"
 
@@ -242,7 +244,7 @@ namespace :import do
 
   desc "Import page image references"
   task :images => :environment do
-    source = File.open("./lib/assets/pages-correlate.csv")
+    source = File.open(CSVFILE)
 
     STOCKDALE_PREFIX = "000013068_"
     PARIS_PREFIX = "000013143_"
