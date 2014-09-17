@@ -1,7 +1,10 @@
-JeffersonNotes::Application.routes.draw do
+Rails.application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  #get "images_milestones/index"
+
   get "milestones/index"
   get "milestones/show"
 
@@ -17,11 +20,12 @@ JeffersonNotes::Application.routes.draw do
 
   resources :milestones, :only => [:index, :show]
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  root :to => 'static_pages#home'
+
 
   # You can have the root of your site routed with "root"
-  root :to => 'static_pages#home'
+  # root 'welcome#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -56,6 +60,7 @@ JeffersonNotes::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

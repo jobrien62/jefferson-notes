@@ -116,7 +116,7 @@
       @include leader(2);
 
       .milestone & {
-          @extend h2;
+          /*@extend h2;*/
           margin-top:0;
       }
 
@@ -477,7 +477,7 @@
 
 
                 .marginNote {
-                    @extend h4;
+                    /*@extend h4;*/
                     font-style:italic;
                     color: #999;
                     margin-top: rhythm(1);
