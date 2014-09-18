@@ -82,18 +82,40 @@ namespace :import do
     ap "Done"
   end
 
+  def parse_translation(translation_file)
+    file = File.open( "./lib/assets/#{translation_file}" )
+    xml = Nokogiri::HTML(file)
+    content = xml.css( 'div' )
+
+    fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
+    <div>
+      <p><a href="#" class="transcription-trigger">Marginalia</a></p>
+      <div class="modal-content transcription-body">
+        #{content}
+      </div>
+    </div>
+    EOHTML
+
+    fragment
+
+  end
+
   def make_link(page, slug)
 
     pid_1787 = find_pid(page, 1787)
     pid_1784 = find_pid(page, 1784)
+    translation = ""
 
     thumb_1787 = fedora_thumb(pid_1787['pid'])
     full_1787 = fedora_full(pid_1787['pid'])
     thumb_1784 = fedora_thumb(pid_1784['pid'])
     full_1784 = fedora_full(pid_1784['pid'])
 
+    translation = parse_translation(pid_1787['transcription_file']) unless pid_1787['transcription_file'].nil?
+
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs" id="#{page.to_i}">
+       #{translation}
        <a href="#{full_1787}">
         <figure>
           <img alt='1787 Edition' class='thumb lazy' width="89" height="125" data-original='#{thumb_1787}' />
