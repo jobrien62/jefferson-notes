@@ -63,7 +63,6 @@ $(document).ready(function() {
     failure_limit: 10
   });
 
-  // TODO Remove before going live
   $('img.lazy').popover({
     trigger: 'hover',
     html: true,
