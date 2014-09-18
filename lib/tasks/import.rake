@@ -10,18 +10,9 @@ require "titleize"
 HTMLFILE='./lib/assets/stockdale1787.final.html'
 #HTMLFILE='./lib/assets/queries.html'
 CSVFILE='./lib/assets/pages-correlate-no-sync.csv'
+FEDORA_PREFIX="http://fedoraproxy.lib.virginia.edu/fedora/objects"
 
 namespace :import do
-
-  FEDORA_PREFIX="http://fedoraproxy.lib.virginia.edu/fedora/objects"
-
-  def fedora_thumb(pid)
-    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getThumbnail"
-  end
-
-  def fedora_full(pid)
-    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getStaticImage"
-  end
 
   desc "Convenience wrapper for all the tasks"
   task :all => [:milestones, :index]
@@ -29,9 +20,6 @@ namespace :import do
   desc "Convenience wrapper for resetting the database"
   task :reset => ['db:reset', :milestones]
 
-  def mapPageToPids(page)
-    pids = {}
-  end
 
   def find_pid(page, edition)
     @csv ||= @csv = CSV.read(CSVFILE, headers: true)
@@ -40,21 +28,22 @@ namespace :import do
     page_field = "#{edition}_page"
 
     pid = ""
+    result = {}
 
     @csv.each do |row|
       if( row[page_field] == page )
+        if( row['transcriptions'].nil? )
+          transcription_file = nil
+        else
+          transcription_file = "transcriptions/transcription_#{row['transcriptions']}.html"
+        end
+
         pid = "uva-lib:#{row[pid_field]}"
+        result = {"pid" => pid, "transcription_file" => transcription_file}
       end
-      #puts row["1787_page"].class
     end
 
-    pid
-
-  end
-
-  def parse_data
-    source = File.open(HTMLFILE)
-    Nokogiri::XML(source)
+    result
   end
 
   desc "Index milestones"
@@ -67,7 +56,7 @@ namespace :import do
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titlecase
 
-      query.xpath('//p|div|table').each do |payload|
+      query.xpath('//*').each do |payload|
         content = payload.text
         id = payload.attribute('id')
 
@@ -98,23 +87,10 @@ namespace :import do
     pid_1787 = find_pid(page, 1787)
     pid_1784 = find_pid(page, 1784)
 
-    #pid_1787 = "uva-lib:" + (763482 + page.to_i).to_s
-    #pid_1784 = "uva-lib:" + (1195298 + page.to_i).to_s
-
-    thumb_1787 = fedora_thumb(pid_1787)
-    full_1787 = fedora_full(pid_1787)
-    thumb_1784 = fedora_thumb(pid_1784)
-    full_1784 = fedora_full(pid_1784)
-
-    #ap "#{slug}, #{pid_1787}, #{page.to_i}"
-
-    #MilestonesImages.create(
-      #page_id: page.to_i,
-      #slug: slug,
-      #fedora_pid: pid_1787
-    #)
-
-
+    thumb_1787 = fedora_thumb(pid_1787['pid'])
+    full_1787 = fedora_full(pid_1787['pid'])
+    thumb_1784 = fedora_thumb(pid_1784['pid'])
+    full_1784 = fedora_full(pid_1784['pid'])
 
     fragment = Nokogiri::HTML::DocumentFragment.parse <<-EOHTML
        <div class="thumbs" id="#{page.to_i}">
@@ -133,7 +109,7 @@ namespace :import do
         </figure>
        </a>'
     end
-       }
+    }
       </div>
 
     EOHTML
@@ -142,28 +118,20 @@ namespace :import do
 
   end
 
-  def parse_page(page_element)
-    page_element.attribute('id').to_s.gsub("page-", '')
-  end
-
-
   desc "Generate Milestones"
   task :milestones => :environment do
     doc = parse_data
     order = 0
 
-    #doc.xpath('//div[@class="query"]').each do |query|
     doc.xpath('//div[@class="query"]').each do |query|
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titlecase
-      #content = query.to_html()
       order += 1
 
       ap "Adding #{title}..."
 
       query.xpath('.//span[@class="pagenum"]').each do |page|
 
-        #page_id = page.attribute('id').value.scan(/\d+/).join
         page_id = parse_page(page)
 
         thumbnails = make_link(page_id, slug)
@@ -198,91 +166,32 @@ namespace :import do
     ap doc.search("//table").size
   end
 
-  def construct_filename(prefix, file)
-    "#{prefix}#{file}".gsub('.tif', '.jpg')
-  end
-
-  desc "Contruct Page Associations"
-  task :page_images => :environment do
-    source = File.open(CSVFILE)
-
-    ap "Associating Pages and pids"
-
-    CSV.foreach(source, :headers => true) do |row|
-      slug = row[6]
-      #ap slug unless slug.nil?
-
-      stockdale_pid = "uva-lib:#{row[1]}"
-      paris_pid = "uva-lib:#{row[5]}"
-
-      page = Page.find_by_slug(slug)
-
-      unless page.nil?
-        stockdale_image = Image.find_by_pid(stockdale_pid)
-        paris_image = Image.find_by_pid(paris_pid)
-
-        ap "Associating #{page.slug} with #{stockdale_image.pid} and #{paris_image.pid}"
-
-        pageImage = ImagesPages.create([
-          {
-            page_id: page.id,
-            image_id: stockdale_image.id
-          },
-          {
-            page_id: page.id,
-            image_id: paris_image.id
-          }
-
-        ])
-      end
-
-      #ap stockdale_pid
-
-    end
-
-  end
-
-  desc "Import page image references"
-  task :images => :environment do
-    source = File.open(CSVFILE)
-
-    STOCKDALE_PREFIX = "000013068_"
-    PARIS_PREFIX = "000013143_"
-
-    CSV.foreach(source, :headers => true) do |row|
-      stockdale_image = construct_filename(STOCKDALE_PREFIX, row[0])
-      paris_image = construct_filename(STOCKDALE_PREFIX, row[3])
-
-      stockdale = Witness.find_by_slug('stockdale')
-      paris = Witness.find_by_slug('paris')
-
-      stockdale_pid = "uva-lib:#{row[1]}"
-      paris_pid = "uva-lib:#{row[5]}"
-
-      ap "Adding pids: #{paris_pid} and #{stockdale_pid}"
-
-      pages = Image.create([
-        {
-          witness_id: stockdale.id,
-          filename: stockdale_image,
-          pid: stockdale_pid
-        },
-        {
-          witness_id: paris.id,
-          filename: paris_image,
-          pid: paris_pid
-        },
-      ])
-
-    end
-  end
-
-
   desc 'Resets on Heroku'
   task :heroku_reset => :environment do
     sh "heroku pg:reset DATABASE --confirm jefferson-notes"
     `heroku run rake db:migrate`
     `heroku run rake import:milestones`
+  end
+
+  def parse_data
+    source = File.open(HTMLFILE)
+    Nokogiri::XML(source)
+  end
+
+  def fedora_thumb(pid)
+    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getThumbnail"
+  end
+
+  def fedora_full(pid)
+    "#{FEDORA_PREFIX}/#{pid}/methods/djatoka:StaticSDef/getStaticImage"
+  end
+
+  def parse_page(page_element)
+    page_element.attribute('id').to_s.gsub("page-", '')
+  end
+
+  def construct_filename(prefix, file)
+    "#{prefix}#{file}".gsub('.tif', '.jpg')
   end
 
 end

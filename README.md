@@ -6,8 +6,9 @@
 
 ## Dependencies
 
-* Rails
-* bower (for managing JavaScript dependencies)
+* Ruby 2.1.2
+* Rails 4.x
+* npm with bower (for managing JavaScript dependencies)
 
 ### Bower
 
@@ -15,153 +16,102 @@
 $ npm install -g bower
 ```
 
-## Running
+## Project Setup
 
 ```shell
+$ mkdir -p ~/projects
+$ cd projects
+$ git clone https://github.com/waynegraham/jefferson-notes.git
+$ cd jefferson-notes
 $ bundle install
-$ bower install
-$ rake db:migrate
-$ rake import:docs
-$ rake import:images
+$ rake import:reset
+$ foreman start -f Procfile.dev
+```
+
+## Changes
+
+Any changes you make need to be committed back to GitHub.
+
+```shell
+$ cd ~/projects/jefferson-notes
+$ git status
+On branch develop
+Your branch is ahead of 'origin/develop' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README.md
+	modified:   lib/tasks/import.rake
+$ git commit -am "A useful note about what you did"
+$ git push origin master
+```
+
+## Editing Image/Text
+
+Thumbnails are injected in to the HTML file before being inserted in to the
+database. The process involves reading the HTML source file, finding the
+`.pagenum` attribute, parsing the "page" number from that string, then looking
+up the proper `pid` for the page in the CSV file
+(`lib/assets/pages-correlate-no-sync.csv`).
+
+|1787_file | 1787_pid | 1787_page | 1784_file | 1784_page | 1784_pid | slug | notes_1787 | transcriptions|
+|----------|----------|-----------|-----------|-----------|----------|------|------------|---------------|
+|0063.tif|763496|15|0032.tif|17|1195312|15| |	|
+|0064.tif|763497|16|0033.tif|18|1195313|16|	| |
+|0065.tif|763498|17|0034.tif|19|1195314|17| | |
+|0066.tif|763499|18|0035.tif|20|1195315|18|lining up|27
+
+Mostly this means updating the `1787_pid` field with what is in the library's
+repository. Simply navigate to the correct page for the edition in the page
+viewer and note the **second** `uva-lib:nnnnnn` in the URL.
+
+* [Paris 1784 edition][1784]
+* [Stockton 1787 edition][1787]
+
+You can also click on the thumbnail image and add/subtract from that number
+in the pid field to get the correct page number.
+
+For instance, the advertisement page in the Stockdale edition has a pid of
+*763636* that you can find in the URL in the `uva-lib:763636`. All we need
+is the number here.
+
+http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:763636/methods/djatoka:StaticSDef/getStaticImage
+
+## Local Checks
+
+If you make updates to the mappings, you should verify the check before
+committing the change.
+
+```shell
+$ cd ~/projects/jefferson-notes
+$ rake import:reset
 $ foreman start
 ```
+Point your browser at the local server (`http://localhost:5000`) and
+navigate to the appropriate place and verify that the change is correct.
+You can stop the server with `ctrl + c`. If you have made changes to the
+CSV or HTML file, you will need to follow the instructions in the next
+section.
 
 ## Deployment
 
+This project uses continuous deployment through Travis-ci. When the code is
+pushed to GitHub, [Travis-ci][ci] will run the test suite. If the tests pass,
+the project is then auto-deployed to Heroku. Most of the time, you will not need
+to do anything (assuming the tests pass) to deploy the code to the live site.
+
+If you make an update to the mapping between the images and page numbers in
+`lib/assets/pages-correlate-no-sync.csv` or the HTML code in
+`lib/assets/stockdale1787.final.html`, you will need to take an additional step.
+
 ```shell
-$ git push heroku develop:master
-$ heroku pg:reset DATABASE
-$ heroku run rake db:migrate
-$ heroku run rake import:milestones
+$ cd ~/projects/jefferson-notes
+$ git push origin master
+$ rake import:heroku_reset
 ```
 
-## Adding Transcriptions
-
-Log in and find the page that requires the transcription (in
-`lib/assets/transcriptions`). Copy the body of the file and add it
-between this template:
-
-```html
-<div>
-  <p><a href="#" class="transcription-trigger">Marginalia</a></p>
-  <div class="modal-content transcription-body">
-    ...
-  </div>
-</div>
-
-```
-
-This then goes in to the `.thumbs` div (before the link to the
-repository).
-
-A full example from the Advertisement in the 1787 edition:
-
-```html
-<div>
-  <p><a href="#" class="transcription-trigger">Marginalia</a></p>
-
-  <div class="modal-content transcription-body">
-    <div id="xw20aab3b3" class="addTranscription">
-      <ul id="xw20aab3b3b1">
-         <li id="xw20aab3b3b1b1"> +</li>
-         <li id="xw20aab3b3b1b3"> Barbé Marbois</li>
-      </ul>
-    </div>
-    <div id="xw20aab3b5" class="addDescription">
-      <p id="xw20aab3b5b1">The two manuscript additions are in pencil. A plus sign in the text follows "among
-         us." In the bottom margin the name "Barbé Marbois" appears, referring to François
-         Barbé-Marbois (1745-1837), the secretary of the French legation whose questionnaire
-         prompted Jefferson to begin work on the earliest draft of the <i id="xw20aab3b5b1b1">Notes</i>.
-      </p>
-      <p id="xw20aab3b5b3">Over 150 pencil marks appear throughout Jefferson's personal copy. These marks and
-         others like them were not made by Jefferson but by one or more people involved in
-         the publication of a posthumous edition of the <i id="xw20aab3b5b3b1">Notes</i>, printed in 1853 by Charles H. Wynne for Joseph Williamson Randolph in Richmond.
-         The 1853 edition was the first to include the additions and revisions recorded in
-         Jefferson's personal copy. The pencil marks guide the typesetting of the new edition
-         by indicating how to incorporate Jefferson's manuscript additions. Jefferson's personal
-         copy therefore records its author's revisions but also offers evidence of how a printer
-         in nineteenth-century America might edit a text to accommodate author intent.
-      </p>
-    </div>
-  </div>
-</div>
-
-```
-
-The entire file would then look like this:
-
-```html
-<div id="advertisement" class="query">
-  <h4 id="xw20aab3b1">ADVERTISEMENT</h4>
-  <span id="advertisement" class="pagenum"></span>
-
-<div class="thumbs" id="0">
-<div>
-  <p><a href="#" class="transcription-trigger">Marginalia</a></p>
-
-  <div class="modal-content transcription-body">
-    <div id="xw20aab3b3" class="addTranscription">
-      <ul id="xw20aab3b3b1">
-         <li id="xw20aab3b3b1b1"> +</li>
-         <li id="xw20aab3b3b1b3"> Barbé Marbois</li>
-      </ul>
-    </div>
-    <div id="xw20aab3b5" class="addDescription">
-      <p id="xw20aab3b5b1">The two manuscript additions are in pencil. A plus sign in the text follows "among
-         us." In the bottom margin the name "Barbé Marbois" appears, referring to François
-         Barbé-Marbois (1745-1837), the secretary of the French legation whose questionnaire
-         prompted Jefferson to begin work on the earliest draft of the <i id="xw20aab3b5b1b1">Notes</i>.
-      </p>
-      <p id="xw20aab3b5b3">Over 150 pencil marks appear throughout Jefferson's personal copy. These marks and
-         others like them were not made by Jefferson but by one or more people involved in
-         the publication of a posthumous edition of the <i id="xw20aab3b5b3b1">Notes</i>, printed in 1853 by Charles H. Wynne for Joseph Williamson Randolph in Richmond.
-         The 1853 edition was the first to include the additions and revisions recorded in
-         Jefferson's personal copy. The pencil marks guide the typesetting of the new edition
-         by indicating how to incorporate Jefferson's manuscript additions. Jefferson's personal
-         copy therefore records its author's revisions but also offers evidence of how a printer
-         in nineteenth-century America might edit a text to accommodate author intent.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-       <a href="http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:763480/methods/djatoka:StaticSDef/getStaticImage">
-        <figure>
-          <img alt="1787 Edition" class="thumb lazy" width="89" height="125" data-original="http://fedoraproxy.lib.virginia.edu/fedora/objects/uva-lib:763480/methods/djatoka:StaticSDef/getThumbnail">
-          <figcaption>1787 Edition</figcaption>
-        </figure>
-       </a>
-      </div>
-
-
- <p id="xw20aab3b7"><i id="xw20aab3b7a">THE</i> following Notes were written in Virginia in
-  the year 1781, and somewhat corrected and enlarged in the winter of 1782, in answer to
-  Queries proposed to the Author, by a Foreigner of Distinction, <i id="editorial-xw20aab3b7b2" class="fa fa-info-circle editorialTrigger"></i><span id="xw20aab3b7b2" class="addEditorial">Jefferson is referring to Fran&#xE7;ois
-    Barb&#xE9;-Marbois (1745-1837), who was secretary to the French legation to the early
-    United States. In 1780, Marbois gave a questionnaire to representatives of each of
-    the thirteen states so that he could produce a report on the new nation. The
-    questionnaire for Virginia was passed on to Jefferson, who took on the project of
-    answering Marbois's queries; <i id="xw20aab3b7b2b1">Notes on the State of Virginia
-    </i> is, ultimately, the product. In 1803, when Jefferson was President, Marbois
-    negotiated the Louisiana Purchase with him.</span> then residing among us. The
-  subjects are all treated imperfectly; some scarcely touched on. To apologize for this by
-  developing the circumstances of the time and place of their composition, would be to
-  open wounds which have already bled enough. To these circumstances some of their
-  imperfections may with truth be ascribed; the great mass to the want of information and
-  want of talents in the writer. He had a few copies printed, <i id="editorial-xw20aab3b7b4" class="fa fa-info-circle editorialTrigger"></i><span id="xw20aab3b7b4" class="addEditorial">In 1784, Jefferson had a private edition of
-    200 copies of <i id="xw20aab3b7b4b1">Notes on the State of Virginia </i>printed in
-    Paris; one of the copies of that printing has been digitized for this edition.
-    Another copy was obtained by a French bookseller, who issued a translation of the
-    work into French; unhappy with errors that had crept into the text, and worried that
-    the book would now be translated back into English (with, very likely, more errors
-    produced in that process), Jefferson approached the London publisher John Stockdale
-    to issue a new, English edition. Page images of Jefferson&#x2019;s own copy of the
-    1787 London edition, which was extensively annotated and amended by him in later
-    years, are also included in this edition.</span> which he gave among his friends:
-  and a translation of them has been lately published in France, but with such alterations
-  as the laws of the press in that country rendered necessary. They are now offered to the
-  public in their original form and language. </p>
-  <div class="dateline"><p>Feb. 27, 1787.</p></div>
-</div>
-```
+[1784]: http://search.lib.virginia.edu/catalog/uva-lib:710304/view
+[1787]: http://search.lib.virginia.edu/catalog/uva-lib:760484/view
+[ci]: https://travis-ci.org/waynegraham/jefferson-notesb
