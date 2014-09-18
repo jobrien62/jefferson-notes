@@ -3,6 +3,14 @@ JeffersonNotes::Application.configure do
   # for devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  # for bullet n+1 queries
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.add_footer = true
+  end
+
   # for sprockets_better_errors
   config.assets.raise_production_errors = true
 
