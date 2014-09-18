@@ -12,6 +12,13 @@ HTMLFILE='./lib/assets/stockdale1787.final.html'
 CSVFILE='./lib/assets/pages-correlate-no-sync.csv'
 FEDORA_PREFIX="http://fedoraproxy.lib.virginia.edu/fedora/objects"
 
+namespace :cache do
+  desc "Clears Rails cache"
+  task :clear => :environment do
+    Rails.cache.clear
+  end
+end
+
 namespace :import do
 
   desc "Convenience wrapper for all the tasks"
@@ -193,6 +200,7 @@ namespace :import do
     sh "heroku pg:reset DATABASE --confirm jefferson-notes"
     `heroku run rake db:migrate`
     `heroku run rake import:milestones`
+    `heroku run rake cache:clear`
   end
 
   def parse_data
