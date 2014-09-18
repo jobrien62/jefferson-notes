@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_milestones
 
   def set_milestones
-    @milestones = Milestone.all
+    @milestones ||= Milestone.all
   end
 
 end
