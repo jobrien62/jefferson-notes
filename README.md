@@ -4,6 +4,17 @@
 [![Coverage Status](https://coveralls.io/repos/waynegraham/jefferson-notes/badge.png?branch=master)](https://coveralls.io/r/waynegraham/jefferson-notes?branch=master)
 [![Dependency Status](https://gemnasium.com/waynegraham/jefferson-notes.png)](https://gemnasium.com/waynegraham/jefferson-notes)
 
+## Deploy to Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Deploy your own *Notes on Virginia** instance to Heroku by clicking the "Deploy to Heroku button." Follow the Heroku instructions for importing your source code and cloning the new repository to your desktop. From within your new app's repository, you will need to run the following command to set up the database:
+
+```
+$ heroku run rake db:migrate
+$ heroku run rake import:milestones
+```
+
 ## Dependencies
 
 * Ruby 2.1.2

@@ -1,0 +1,7 @@
+{
+  "name": "Notes on the State of Virginia",
+  "description": "Web application for reading Thomas Jefferson's Notes on the State of Virginia",
+  "repository": "https://github.com/waynegraham/jefferson-notes"
+  "logo": "https://raw.githubusercontent.com/waynegraham/jefferson-notes/master/app/assets/images/apple-touch-icon-precompsed.png",
+  "keywords": ["rails", "jefferson", "reading"]
+}
