@@ -15,7 +15,7 @@ $ heroku run rake db:migrate
 $ heroku run rake import:milestones
 ```
 
-## Dependencies
+## Development Dependencies
 
 * Ruby 2.1.2
 * Rails 4.x
