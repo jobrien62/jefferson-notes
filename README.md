@@ -119,7 +119,7 @@ If you make an update to the mapping between the images and page numbers in
 
 ```shell
 $ cd ~/projects/jefferson-notes
-$ git push origin master
+$ git push heroku master
 $ rake import:heroku_reset
 ```
 
