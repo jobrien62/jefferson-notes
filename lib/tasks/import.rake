@@ -63,7 +63,7 @@ namespace :import do
       slug = query.attribute('id').value
       title = slug.split('-').join(' ').titlecase
 
-      query.xpath('//*').each do |payload|
+      query.xpath('.//*').each do |payload|
         content = payload.text
         id = payload.attribute('id')
 
