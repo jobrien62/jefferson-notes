@@ -3,7 +3,7 @@ class Milestone < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   def next
-    self.class.order("id").where("id > ?", self.id).first
+    self.class.order("id").find_by("id > ?", self.id)
   end
 
   def prev
