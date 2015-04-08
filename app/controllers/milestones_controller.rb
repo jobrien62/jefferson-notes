@@ -1,5 +1,4 @@
 class MilestonesController < ApplicationController
-
   before_action :set_milestone, only: [:show]
   before_action :get_milestones
 

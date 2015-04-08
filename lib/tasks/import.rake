@@ -20,7 +20,6 @@ namespace :cache do
 end
 
 namespace :import do
-
   desc "Convenience wrapper for all the tasks"
   task :all => [:milestones, :index]
 
@@ -104,11 +103,9 @@ namespace :import do
     EOHTML
 
     fragment
-
   end
 
   def make_link(page, slug)
-
     pid_1787 = find_pid(page, 1787)
     pid_1784 = find_pid(page, 1784)
     translation = ""
@@ -144,7 +141,6 @@ namespace :import do
     EOHTML
 
     fragment
-
   end
 
   desc "Generate Milestones"
@@ -160,7 +156,6 @@ namespace :import do
       ap "Adding #{title}..."
 
       query.xpath('.//span[@class="pagenum"]').each do |page|
-
         page_id = parse_page(page)
 
         thumbnails = make_link(page_id, slug)
@@ -175,7 +170,6 @@ namespace :import do
         order: order += 1,
         content: content
       )
-
     end
 
     ap "Done"
@@ -223,5 +217,4 @@ namespace :import do
   def construct_filename(prefix, file)
     "#{prefix}#{file}".gsub('.tif', '.jpg')
   end
-
 end

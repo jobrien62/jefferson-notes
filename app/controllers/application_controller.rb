@@ -8,5 +8,4 @@ class ApplicationController < ActionController::Base
   def set_milestones
     @milestones ||= Milestone.all
   end
-
 end

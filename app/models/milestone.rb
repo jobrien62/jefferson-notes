@@ -9,5 +9,4 @@ class Milestone < ActiveRecord::Base
   def prev
     self.class.order("id").where("id < ?", self.id).last
   end
-
 end
