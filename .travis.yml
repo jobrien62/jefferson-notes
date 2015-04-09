@@ -3,13 +3,12 @@ rvm:
 - 2.1.5
 env:
 - DB=postgresql
-- SOLR_VERSION=3.5.0 SOLR_URL=http://localhost:8983/solr SOLR_CONFS="./spec/configs/schema.xml ./spec/configs/solrconfig.xml"
 script:
 - RAILS_ENV=test bundle exec rake --trace db:migrate test
 - bundle exec rspec spec
 before_script:
 - psql -c 'create database notes_test' -U postgres
-- curl https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | bash
+- curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.5.0 SOLR_URL=http://localhost:8983/solr SOLR_CONFS="./spec/configs/schema.xml ./spec/configs/solrconfig.xml" bash
 notifications:
   irc: irc.freenode.org#slab
 deploy:
