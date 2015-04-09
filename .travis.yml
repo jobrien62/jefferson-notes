@@ -8,7 +8,7 @@ script:
 - bundle exec rspec spec
 before_script:
 - psql -c 'create database notes_test' -U postgres
-- curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.5.0 SOLR_URL=http://localhost:8983/solr SOLR_CONFS="./spec/configs/schema.xml ./spec/configs/solrconfig.xml" bash
+- curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_CORE=core0 SOLR_VERSION=3.5.0 SOLR_URL=http://localhost:8983/solr SOLR_CONFS="./spec/configs/schema.xml ./spec/configs/solrconfig.xml" bash
 notifications:
   irc: irc.freenode.org#slab
 deploy:
