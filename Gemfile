@@ -8,7 +8,7 @@ gem 'rails', '~> 4.0.0'
 gem "sass", "~> 3.3.0"
 gem 'sass-rails', '~> 4.0.0'
 gem "compass-rails", "~> 2.0.0"
-gem "susy", "~> 2.1.3"
+gem "susy", "~> 2.2.2"
 
 gem "sprockets", "2.11.0"
 
