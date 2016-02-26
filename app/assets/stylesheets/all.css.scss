@@ -116,8 +116,13 @@
       @include leader(2);
 
       .milestone & {
-          @extend h2;
-          margin-top:0;
+        @include adjust-font-size-to(24px);
+        @include leader(2, 24px);
+
+        h1 + & {
+          @include leader(1,24px);
+        }
+        margin-top:0;
       }
 
       h3 + & {
@@ -477,10 +482,21 @@
 
 
                 .marginNote {
-                    @extend h4;
-                    font-style:italic;
-                    color: #999;
-                    margin-top: rhythm(1);
+                  @include adjust-font-size-to($base-font-size);
+                  @include leader(2);
+
+                  .milestone & {
+                    @include adjust-font-size-to(24px);
+                    @include leader(2, 24px);
+
+                    h1 + & {
+                      @include leader(1,24px);
+                    }
+                  }
+                  margin-top:0;
+                  font-style:italic;
+                  color: #999;
+                  margin-top: rhythm(1);
                 }
 
                 .thumbs {
