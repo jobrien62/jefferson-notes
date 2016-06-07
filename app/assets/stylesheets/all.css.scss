@@ -1,40 +1,36 @@
 //= depend_on_asset "jefferson-flipped.jpg"
 //= depend_on_asset "scroll-to-top.png"
 //
-@import "compass";
+@import "bourbon";
 @import "susy";
-@import "compass/reset";
-@import "settings";
-
-@media screen {
-
-  @import "mixins";
 
     * {
         @include box-sizing(border-box);
     }
 
-    @include establish-baseline;
 
     html {
         background-color: #f0f0f0;
-        @include background-image(
-            linear-gradient(top, rgba(black, .4), rgba(black, .4)),
-            url(image-path("jefferson-flipped.jpg"))
+        @include background(
+            linear-gradient(from top, rgba(black, .4), rgba(black, .4)),
+            asset-url("jefferson-flipped.jpg")
         );
-        background-position:bottom right;
-        @include background-size(cover);
+        background-position:bottom center;
+        background-size: cover;
         background-attachment:fixed;
         background-repeat:no-repeat;
         @media (max-width:400px) {
-        background-position: bottom right, -500px bottom;
+          background-position: bottom right, -500px bottom;
         }
 
     }
 
     body {
-        @include container($grid);
         font-family: 'Libre Baskerville', Georgia, serif;
+        font-size: 18px;
+        line-height: 1.5;
+        margin:0;
+        padding:0;
     }
 
     a {
@@ -55,111 +51,72 @@
     }
 
     h1 {
-      @include adjust-font-size-to(28px);
-      @include adjust-leading-to(1.5, 28px);
-      @include leader(1,28px);
-      @include trailer(2,28px);
-
       main &:first-of-type {
         border-bottom: 1px dotted #ccc;
-        padding-bottom: rhythm(2,28px);
       }
 
       .map main & {
-        padding-bottom: rhythm(1,28px) !important;
         border:none;
         margin:0;
-      }
-
-      @media (min-width:480px) {
-      @include adjust-font-size-to(36px);
-      @include adjust-leading-to(2, 36px);
-      @include leader(1,36px);
-      @include trailer(2,36px);
-      main &:first-of-type {
-        border-bottom: 1px dotted #ccc;
-        padding-bottom: rhythm(2,36px);
-      }
       }
 
       .results .search_result & {
         border:none;
         padding-bottom:0;
-      @include adjust-font-size-to(20px);
-      @include adjust-leading-to(1.25, 20px);
-      margin:0;
-
+        margin:0;
       }
 
     }
 
     h2 {
-      @include adjust-font-size-to(24px);
-      @include leader(2, 24px);
 
       h1 + & {
-          @include leader(1,24px);
       }
     }
 
     h3 {
-      @include adjust-font-size-to(20px);
       font-weight:normal;
-      @include leader(2, 20px);
       h2 + & {
-        @include leader(1, 20px);
       }
     }
 
     h4 {
-      @include adjust-font-size-to($base-font-size);
-      @include leader(2);
 
       .milestone & {
-        @include adjust-font-size-to(24px);
-        @include leader(2, 24px);
-
-        h1 + & {
-          @include leader(1,24px);
-        }
-        margin-top:0;
+          margin-top:0;
       }
 
       h3 + & {
-        @include leader(1);
       }
     }
 
     h5 {
-      @include adjust-font-size-to($base-font-size);
-      @include leader(2);
       h4 + & {
-        @include leader(1);
       }
 
     }
 
     h6 {
-      @include adjust-font-size-to($base-font-size);
       font-style:italic;
-      @include leader(2);
       h5 + & {
-        @include leader(1);
       }
     }
 
-    #{headings(3,6)} {
+    h3,h4,h5,h6{
        + p {
             margin-top:0;
       }
     }
 
     p,ul,ol,dl {
-        @include rhythm(1);
     }
 
     p:empty {
         margin:0;
+    }
+
+    ul,ol {
+      margin-left: 2rem;
     }
 
     ul {
@@ -172,7 +129,6 @@
 
     ul,ol {
         padding:0;
-        margin: rhythm(1) 0 rhythm(1) rhythm(1);
 
         ul {
             list-style: circle;
@@ -183,7 +139,8 @@
         }
 
         ul, ol {
-            margin: 0 0 0 rhythm(1);
+            margin-top: 0;
+            margin-bottom:0;
 
             ul {
                 list-style:square;
@@ -220,13 +177,10 @@
         max-width: 100%;
         border: 2px solid #ccc;
         padding: 0 5px;
-        margin-top: rhythm(1);
     }
 
     table {
         padding:0;
-        margin: rhythm(1, 12px) 0;
-        @include adjust-font-size-to(12px);
         max-width:98%;
         border-collapse: collapse;
         border:1px solid #ccc;
@@ -238,15 +192,10 @@
     }
 
     .addEditorial {
-        @extend %hidden;
     }
 
     /*author note (footnotes from the book)*/
     .authorNote {
-      @include adjust-font-size-to(12px);
-      @include leader(1, 12px);
-      @include trailer(1, 12px);
-      padding: rhythm(1, 12px);
       background: #fff;
       width: 100%;
     }
@@ -254,7 +203,7 @@
     /*top scroll*/
     .scroll-to-top {
       position: fixed;
-      background: image-url('scroll-to-top.png') no-repeat;
+      background: asset-url('scroll-to-top.png') no-repeat;
       cursor: pointer;
       bottom: 2em;
       height: 55px;
@@ -266,7 +215,14 @@
     }
 
     #skip-link {
-        @extend %visuallyhidden;
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
     }
 
     .editorialTrigger, .note {
@@ -276,22 +232,17 @@
     }
 
     .note {
-        @include adjust-font-size-to(20px);
         line-height:0;
     }
 
     div.tip-in {
         background: #fff;
         background: rgba(white, 0.9);
-        @include adjust-font-size-to(14px);
-        padding: rhythm(1, 14px) rhythm(1, 14px);
-        margin-top: rhythm(1,14px);
 
         &:before {
             content: "Tip-in";
             display:block;
             font-style:italic;
-            @include adjust-font-size-to(12px);
             color: #999;
             text-align:right;
         }
@@ -303,8 +254,17 @@
         border-bottom:1px solid rgba(white, 0.125);
         color: white;
         color: rgba(white, 0.9);
-        @extend %clearfix;
         position:relative;
+        padding: .5rem 1rem;
+        @include display(flex);
+        @include align-items(stretch);
+        @include flex-direction(row);
+        @include justify-content(flex-start);
+
+        h1,
+        nav {
+          @include flex(1);
+        }
 
         a {
             color: #f0f0f0;
@@ -312,26 +272,18 @@
             text-decoration:none;
         }
 
-        h1,ul {
-            @include adjust-font-size-to(14px);
-            @include adjust-leading-to(2,14px);
+        h1,
+        nav > ul {
             margin:0;
             padding:0;
-            @extend %clearfix;
             font-variant:small-caps;
-        }
-
-        h1 {
-            float:left;
-            margin-left: 1em;
-            margin-right:1em;
+            font-size: 1rem;
+            line-height: 2;
         }
 
         nav {
-            margin-right:1em;
-
+            text-align:right;
             @media (min-width:700px) {
-                float:right;
             }
 
             form {
@@ -367,8 +319,7 @@
                     background: #292929;
                     color: white;
                     color: rgba(white, 0.9);
-                    font-size:1em;
-                    @include adjust-leading-to(1, 14px);
+                    line-height: 1.25;
 
                     &.open {
                         display:block;
@@ -399,24 +350,22 @@
         @media (min-width: 500px) {
             padding:2em;
             @include columns(2);
-            -moz-column-rule: 1px solid rgba(white, 0.1);
-            -moz-column-gap: 60px;
+            @include column-rule(1px solid rgba(white, .1));
+        }
+
+        @media (min-width: 700px) {
+          @include columns(3);
         }
 
         @media (min-width: 900px) {
-            @include columns(3);
-
+            @include columns(4);
             #globalnav & {
-                @include columns(4);
             }
 
         }
 
-        @media (min-width: 1200px) {
-            #globalnav & {
-                @include columns(6);
-            }
-
+        @media (min-width: 1100px) {
+            @include columns(5);
         }
 
         li {
@@ -435,9 +384,7 @@
                 span {
                     display:block;
                     color: rgba(white, 0.5);
-                    @include adjust-font-size-to(12px);
                     &:last-child {
-                        @include adjust-font-size-to(18px);
                         color: rgba(white, .9);
                     }
                 }
@@ -450,16 +397,19 @@
     }
 
     main {
-        padding-top: rhythm(2);
-        padding-bottom: rhythm(2);
-        @include pad(1,1);
+        padding: 20px;
+
+        @media (min-width: 500px) {
+          padding: 20px 40px;
+        }
+
+        @media (min-width: 700px) {
+          padding: 40px 80px;
+        }
 
         .map & {
-            padding: rhythm(1) 0 0 !important;
 
             h1 {
-                padding-left: rhythm(1, 28px);
-                padding-right: rhythm(1, 28px);
             }
         }
 
@@ -470,6 +420,13 @@
             background: none;
             color: #fff;
 
+            @media (min-width: 700px) {
+              padding-right: 300px;
+            }
+            @media (min-width: 900px) {
+              padding-right: 400px;
+            }
+
             .milestones{
                 background:none;
             }
@@ -478,25 +435,16 @@
 
         .milestones & {
             .milestone {
-                @include pad(0,4);
 
+
+                & > div {
+                  margin-left: 250px;
+                }
 
                 .marginNote {
-                  @include adjust-font-size-to($base-font-size);
-                  @include leader(2);
-
-                  .milestone & {
-                    @include adjust-font-size-to(24px);
-                    @include leader(2, 24px);
-
-                    h1 + & {
-                      @include leader(1,24px);
-                    }
-                  }
-                  margin-top:0;
-                  font-style:italic;
-                  color: #999;
-                  margin-top: rhythm(1);
+                    font-style:italic;
+                    color: #999;
+                    margin-top: rhythm(1);
                 }
 
                 .thumbs {
@@ -527,11 +475,9 @@
 
         .static_pages &,
         .results & {
-            @include pad(2,2);
         }
 
         .home & {
-            @include pad(1,8);
 
             .milestones {
                 padding: 0 !important;
@@ -545,7 +491,6 @@
 
             .milestone {
                 position:relative;
-               @include pad(4 of 16);
 
               .marginNote {
                   position:absolute;
@@ -558,7 +503,6 @@
               }
 
             .thumbs {
-              margin-right: -(span(3 of 8 widest));
               padding-top:0;
               clear:right;
               float: right;
@@ -568,7 +512,6 @@
                   clear:right;
                   width: auto;
                   margin: rhythm(1) 0 0;
-                  @include adjust-font-size-to(14px);
               }
 
            }
@@ -579,15 +522,6 @@
         }
 
         @media (min-width: 960px) {
-
-            .static_pages &,
-            .results & {
-                @include pad(3,3);
-            }
-
-            .home & {
-                @include pad(1,8);
-            }
 
         }
 
@@ -614,7 +548,6 @@
                 color: #999;
                 margin:0;
                 content: "Previous";
-                @include adjust-font-size-to(12px);
                 font-style:italic;
             }
         }
@@ -630,26 +563,11 @@
         }
     }
 
-    .pagenum {
-      /*display: none;*/
-        @include adjust-font-size-to(14px);
-        @include adjust-leading-to(1,14px);
-        color: #888;
-        &:before {
-          display: block;
-          content: '\A';
-        }
-    }
-
-
     .read-notes {
         display:block;
         text-decoration:none;
         padding:rhythm(1);
         text-align:center;
-        @include adjust-font-size-to(24px);
-        @include adjust-leading-to(1,24px);
-        @include leader(3,24px);
 
         &:link,
         &:visited {
@@ -683,15 +601,6 @@
 
         @media (min-width: 700px) {
 
-            h1 {
-                @include span(4 of 16);
-            }
-
-            p {
-                @include span(last 12 of 16);
-                margin:0;
-            }
-
         }
     }
 
@@ -703,27 +612,22 @@
     }
 
     .thumbnails {
-        overflow:hidden;
-        .thumbnail {
-            @include gallery(4 of 16);
-        }
-
-        @media (min-width:700px) {
-        .thumbnail {
-            @include gallery(3 of 18);
-        }
     }
+
+    .popover-content {
+      font-size: .9rem;
     }
 
     footer {
-        padding: rhythm(1) span(1 of 18);
+        padding: 1.5rem;
+        background-color: rgba(black, 0.5);
+        border-top:1px solid rgba(white, 0.125);
+        color: white;
+        color: rgba(white, 0.9);
 
         p {
-            @include adjust-font-size-to(12px);
-            @include adjust-leading-to(1,12px);
-            margin-bottom: rhythm(1, 12px);
-            color: #e0e0e0;
-            color: rgba(white, 0.8);
+          margin:0;
+          font-size:.8rem;
         }
 
         a {
@@ -753,8 +657,6 @@
 
 
     }
-
-}
 
 @media print {
     * {
