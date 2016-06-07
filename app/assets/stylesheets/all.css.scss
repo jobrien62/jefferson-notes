@@ -13,7 +13,7 @@
         background-color: #f0f0f0;
         @include background(
             linear-gradient(from top, rgba(black, .4), rgba(black, .4)),
-            asset-url("jefferson-flipped.jpg")
+            asset-url("jefferson-flipped.jpg", image)
         );
         background-position:bottom center;
         background-size: cover;
