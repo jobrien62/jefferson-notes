@@ -6,6 +6,8 @@ gem 'rails', '~> 4.0.0'
 
 # Use SCSS for stylesheets
 gem "sass", "~> 3.4.0"
+gem "compass", "~> 1.0.3"
+gem "compass-rails", "~> 3.0.2"
 gem 'sass-rails', '~> 4.0.0'
 gem "susy", "~> 2.2.2"
 gem "bourbon", "~> 4.2.0"
