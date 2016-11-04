@@ -3,6 +3,7 @@
 //
 @import "bourbon";
 @import "susy";
+@import "mixins";
 
     * {
         @include box-sizing(border-box);
@@ -192,6 +193,7 @@
     }
 
     .addEditorial {
+      @extend %hidden;
     }
 
     /*author note (footnotes from the book)*/
