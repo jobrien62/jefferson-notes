@@ -78,6 +78,7 @@ group :development do
   gem 'rb-fsevent', :require => false
   gem 'sprockets_better_errors'
   gem 'bullet'
+  gem 'pry-coolline'
 end
 
 group :development, :test do
