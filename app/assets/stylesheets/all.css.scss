@@ -240,7 +240,8 @@
     div.tip-in {
         background: #fff;
         background: rgba(white, 0.9);
-        display: none;
+        padding: 1rem;
+        margin-top: 1rem;
 
         &:before {
             content: "Tip-in";
