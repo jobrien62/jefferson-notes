@@ -240,6 +240,8 @@
     div.tip-in {
         background: #fff;
         background: rgba(white, 0.9);
+        padding: 1rem;
+        margin-top: 1rem;
 
         &:before {
             content: "Tip-in";
@@ -493,6 +495,7 @@
 
             .milestone {
                 position:relative;
+                padding-right: span(3 of 16 widest);
 
               .marginNote {
                   position:absolute;
@@ -505,6 +508,7 @@
               }
 
             .thumbs {
+              margin-right: -(span(3 of 8 widest));
               padding-top:0;
               clear:right;
               float: right;
